@@ -1,17 +1,35 @@
-import app from "./app.js";
-import dbConnect from "./config/db.config.js";
-import config from "./config/env.config.js";
+import express from 'express';
+import cors from 'cors';
+import router from './routes/index.routes.js';
+import mongoConection from './config/confingMongoDB.js';
+import { server, app, io } from './config/createServer.js';
+import { PORT } from './config/enviroments.js';
+import cloudinary from './config/cloudinary.js';
 
-const server = () => {
-  app.listen(config.port, () => {
-    console.log(`RUN SERVER IN PORT: ${config.port}`);
-  });
+/* ------ SERVER CONFIG ------- */
 
-  dbConnect();
-};
+app.use(
+  cors({
+    origin: '',
+    methods: 'GET,POST,PUT,DELETE',
+    credentials: true,
+  }),
+);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use('/api', router);
 
-server();
+server.listen(PORT, () => {
+  console.log('server iniciado');
+});
 
-app.get("/", (req,res) => {
-  res.send("Server is Running...")
-})
+/* ------ SOCKET IO ------- */
+io.on('connection', (socket) => {
+  console.log('se conecto el socket', socket.id);
+});
+/* ------ CLOUDINARY ------- */
+cloudinary.config();
+console.log(cloudinary, 'conexion exitosa de Cloudinary');
+
+/* ------ CONNECT MONGODB ATLAS ------- */
+mongoConection();
