@@ -11,8 +11,15 @@ import {
   server,
 } from './config/index.js';
 
+import { server, app, io } from './config/createServer.js';
+import { PORT } from './config/enviroments.js';
+import cloudinary from './config/cloudinary.js';
+import cookieParser from "cookie-parser";
+
+
 /* ------ SERVER CONFIG ------- */
 app.use(morgan('dev'));
+//middlewares
 app.use(
   cors({
     origin: '',
@@ -20,9 +27,12 @@ app.use(
     credentials: true,
   }),
 );
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 /* app.use('/api', router); */
+// Routes
+app.use('/api', router);
 
 server.listen(PORT, () => {
   console.log('server iniciado');
@@ -38,3 +48,7 @@ console.log(cloudinary, 'conexion exitosa de Cloudinary');
 
 /* ------ CONNECT MONGODB ATLAS ------- */
 confingMongoDB();
+
+app.get("/", (req,res) => {
+  res.send("Server is Running...")
+})
