@@ -9,7 +9,11 @@ export const PORT =
     : process.env.PORT;
 
 /* -----------  MONGO  ---------- */
-export const MONGODB = process.env.MONGODB_CONNECTION;
+const MONGO_USER = process.env.MONGO_USER;
+const MONGO_PASSWORD = process.env.MONGO_PASSWORD;
+const DATABASE = 'TechTalk';
+
+export const MONGODB = `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@techtalk.4cnzxqu.mongodb.net/?retryWrites=true&w=majority/${DATABASE}`;
 
 /* -----------  CLOUDINARY  ---------- */
 export const CLOUDINARY_CLOUD_NAME = process.env.CLOUDINARY_CLOUD_NAME;
