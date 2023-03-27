@@ -11,8 +11,7 @@ import {
   server,
 } from './config/index.js';
 
-import cookieParser from "cookie-parser";
-
+import cookieParser from 'cookie-parser';
 
 /* ------ SERVER CONFIG ------- */
 app.use(morgan('dev'));
@@ -27,7 +26,6 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-/* app.use('/api', router); */
 // Routes
 app.use('/api', router);
 
@@ -46,6 +44,6 @@ console.log(cloudinary, 'conexion exitosa de Cloudinary');
 /* ------ CONNECT MONGODB ATLAS ------- */
 confingMongoDB();
 
-app.get("/", (req,res) => {
-  res.send("Server is Running...")
-})
+app.get('/', (req, res) => {
+  res.send('Server is Running...');
+});
