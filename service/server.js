@@ -11,9 +11,6 @@ import {
   server,
 } from './config/index.js';
 
-import { server, app, io } from './config/createServer.js';
-import { PORT } from './config/enviroments.js';
-import cloudinary from './config/cloudinary.js';
 import cookieParser from "cookie-parser";
 
 
