@@ -7,7 +7,6 @@ export const PORT =
   process.env.NODE_ENV === 'development'
     ? process.env.DEV_PORT
     : process.env.PORT;
-
 /* -----------  MONGO  ---------- */
 const MONGO_USER = process.env.MONGO_USER;
 const MONGO_PASSWORD = process.env.MONGO_PASSWORD;
