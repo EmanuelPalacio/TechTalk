@@ -8,11 +8,11 @@ export const PORT =
     ? process.env.DEV_PORT
     : process.env.PORT;
 /* -----------  MONGO  ---------- */
-const MONGO_USER = process.env.MONGO_USER;
-const MONGO_PASSWORD = process.env.MONGO_PASSWORD;
-const DATABASE = 'TechTalk';
+//const MONGO_USER = process.env.MONGO_USER;
+//const MONGO_PASSWORD = process.env.MONGO_PASSWORD;
+//const DATABASE = 'techtalk'; * aca se expone el nombre de la base de datos
 
-export const MONGODB = `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@techtalk.4cnzxqu.mongodb.net/?retryWrites=true&w=majority/${DATABASE}`;
+export const MONGODB = process.env.MONGODB_CONNECTION;
 
 /* -----------  CLOUDINARY  ---------- */
 export const CLOUDINARY_CLOUD_NAME = process.env.CLOUDINARY_CLOUD_NAME;
