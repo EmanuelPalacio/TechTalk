@@ -3,7 +3,7 @@ import {
   CLOUDINARY_API_SECRETS,
   CLOUDINARY_API_KEY,
   CLOUDINARY_CLOUD_NAME,
-} from 'enviroments.js';
+} from './enviroments.js';
 
 cloudinary.config({
   cloud_name: CLOUDINARY_CLOUD_NAME,
