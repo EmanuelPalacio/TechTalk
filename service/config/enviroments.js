@@ -20,3 +20,6 @@ export const CLOUDINARY_API_KEY = process.env.CLOUDINARY_API_KEY;
 export const CLOUDINARY_API_SECRETS = process.env.CLOUDINARY_API_SECRETS;
 
 export const KEY_JWT = process.env.JWT;
+/* -----------  GOOGLE  ---------- */
+export const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+export const GOOGLE_SECRET_ID = process.env.GOOGLE_SECRET_ID;
