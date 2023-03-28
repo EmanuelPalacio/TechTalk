@@ -1,3 +1,13 @@
+import {UserSchema} from "../../models/index.js";
+
+export const checkEmail = async (email = '') => {
+  const findEmail = await UserSchema.findOne({ email });
+  if (findEmail) {
+    throw new Error(`The email ${email} already exists in the database`);
+  }
+};
+
+
 /* export const checkRol = async (rol = '') => {
   const verifyRol = await RolesSchema.findOne({ rol });
   if (!verifyRol) {
@@ -5,12 +15,7 @@
   }
 };
 
-export const checkEmail = async (email = '') => {
-  const findEmail = await UserSchema.findOne({ email });
-  if (findEmail) {
-    throw new Error(`El email ${email} ya existe en la base de datos`);
-  }
-};
+
 
 export const checkPassword = async (password = '') => {
   const validPassword = bcryptjs.compareSync(password, UserSchema.password);
