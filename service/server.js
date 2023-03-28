@@ -39,7 +39,6 @@ io.on('connection', (socket) => {
 });
 /* ------ CLOUDINARY ------- */
 cloudinary.config();
-console.log(cloudinary, 'conexion exitosa de Cloudinary');
 
 /* ------ CONNECT MONGODB ATLAS ------- */
 confingMongoDB();
