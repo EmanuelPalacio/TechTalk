@@ -29,8 +29,13 @@ const user = new Schema(
       require: true,
     },
     image: {
-      type: String,
-      default: 'https://i.ibb.co/MBtjqXQ/no-avatar.gif',
+      url: {
+        type: String,
+        default: 'https://i.ibb.co/MBtjqXQ/no-avatar.gif',
+      },
+      id: {
+        type: String,
+      },
     },
     friends_contacts: [{ type: Types.ObjectId, ref: 'User' }],
     email_Verification: {
