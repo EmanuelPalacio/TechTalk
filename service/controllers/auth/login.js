@@ -1,5 +1,5 @@
 import bcryptjs from 'bcryptjs';
-import { findUser } from '../../service/requestDB.js';
+import { findUser } from '../../service/database/index.js';
 import generateJwt from '../../utils/generateJwt.js';
 
 const login = async (req, res) => {
