@@ -3,10 +3,11 @@ import { findUser } from '../../service/database/index.js';
 import generateJwt from '../../utils/generateJwt.js';
 
 const login = async (req, res) => {
-  const { password: passReceived, email, username } = req.body;
+  const { password: passReceived, email } = req.body;
+  console.log(email, passReceived);
   try {
-    const userData = findUser({ username, email });
-    const { password, condition, ...user } = userData;
+    const userData = await findUser(email);
+    const { password, condition, ...user } = userData._doc;
     const validatePassword = bcryptjs.compareSync(passReceived, password);
 
     if (!user || !validatePassword) {

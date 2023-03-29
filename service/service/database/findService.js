@@ -1,9 +1,7 @@
 import { UserSchema } from '../../models/index.js';
 
-export const findUser = async ({ username, email }) => {
-  return await UserSchema.findOne({
-    $or: [{ username }, { email }],
-  });
+export const findUser = async (email) => {
+  return await UserSchema.findOne({ email });
 };
 
 export const findUserById = async (id) => {
