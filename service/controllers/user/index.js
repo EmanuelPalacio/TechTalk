@@ -1,5 +1,5 @@
-export { default as userCreate } from './postUserCreate.js';
-export { default as userAll } from './getUserAll.js';
-export { default as userUpdate } from './putUserUpdate.js';
-export { default as userOne } from './getUserOne.js';
-export { default as userDelete } from './deleteUser.js';
+export { default as deleteUser } from './deleteUser.js';
+export { default as findUser } from './findUser.js';
+export { default as findUsers } from './findUsers.js';
+export { default as userCreate } from './userCreate.js';
+export { default as userUpdate } from './userUpdate.js';

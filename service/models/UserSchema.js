@@ -51,7 +51,7 @@ const user = new Schema(
     },
     isActive: {
       type: Boolean,
-      default: true,
+      default: false,
     },
   },
   {
