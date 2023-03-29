@@ -2,11 +2,6 @@ import { Schema, model, Types } from 'mongoose';
 
 const user = new Schema(
   {
-    username: {
-      type: String,
-      require: true,
-      unique: true,
-    },
     fullname: {
       type: String,
       require: true,
@@ -16,13 +11,16 @@ const user = new Schema(
       require: true,
       unique: true,
     },
-    country: {
+    phone: {
       type: String,
       require: true,
+      unique: true,
+    },
+    country: {
+      type: String,
     },
     city: {
       type: String,
-      require: true,
     },
     password: {
       type: String,

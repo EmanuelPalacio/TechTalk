@@ -2,8 +2,8 @@ import { check } from 'express-validator';
 import { checkEmail, checkExpressValidator } from './index.js';
 
 const validateCreateUser = [
-  check('username', 'The name must not be empty').notEmpty(),
-  check('username', 'The name must be of type string').isString(),
+  check('phone', 'The phone must not be empty').notEmpty(),
+  check('phone', 'The phone must be of type number').isNumeric(),
 
   check('email', 'The email must exist').exists(),
   check('email', 'The email must not be empty').notEmpty(),

@@ -1,10 +1,10 @@
 import bcryptjs from 'bcryptjs';
 import { UserSchema } from '../../models/index.js';
 
-const createUserService = async ({ username, fullname, email, password }) => {
+const createUserService = async ({ phone, fullname, email, password }) => {
   const salt = bcryptjs.genSaltSync(10);
   const userCreate = await UserSchema.create({
-    username,
+    phone,
     fullname,
     email,
     password,
