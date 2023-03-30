@@ -4,9 +4,28 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons'; 
 import { useNavigation } from '@react-navigation/native';
 import AuthLayout from '../../layout/AuthLayout';
+import { useForm } from '../../../hooks/useForm';
+import { useAuthStore } from '../../../hooks/useAuthStore';
+
+
+const initForm ={
+  email:"",
+  password:""
+}
+
+
 const SignInScreen = () => {
   const[secure,setSecure]= useState(true)
+  const[emailActive,setEmailActive]=useState(false)
+  const[passwordActive,setPasswordActive]=useState(false)
+  const{formState,onInputChange,email,password}=useForm(initForm)
+  const{startSignIn}=useAuthStore()
   const navigation = useNavigation()
+   
+  const handleSignIn = ()=>{
+    startSignIn({email:email, password:password})
+  }
+
   const toggle = ()=>{
     setSecure(!secure)
   }
@@ -16,7 +35,11 @@ const SignInScreen = () => {
       <View style={styles.inputContainer}>
                 <TextInput 
                 placeholder='Enter your email'
-                style={styles.input}
+                style={ emailActive ? {...styles.input,borderColor:'#2D4C7E'} : styles.input}
+                onFocus={()=> setEmailActive(true)}
+                onBlur={()=> setEmailActive(false)}
+                 value={email}
+                 onChangeText={(text)=> onInputChange(text,'email')} 
                   />
                 <MaterialIcons name="mail-outline" size={24} color="black" style={{position:'absolute', top:16 , right: 10}} />
          </View>
@@ -24,12 +47,16 @@ const SignInScreen = () => {
                 <TextInput 
                 placeholder='Ingrese su contraseña'
                 secureTextEntry={secure}
-                style={styles.input}
+                style={ passwordActive ? {...styles.input,borderColor:'#2D4C7E'} : styles.input}
+                onFocus={()=> setPasswordActive(true)}
+                onBlur={()=> setPasswordActive(false)}
+                value={password}
+                onChangeText={(text)=> onInputChange(text,'password')}  
                   />
                 <Entypo name="eye-with-line" size={24} color="black" style={{position:'absolute', top:16 , right: 10}} onPress={toggle} />
          </View>
          <Text style={{fontSize:14, color:'#296ABD', fontWeight:'500', alignSelf:'flex-end'}}>¿Olvidaste tu contraseña?</Text>
-         <TouchableOpacity style={styles.button} onPress={()=> navigation.navigate('Home')} >
+         <TouchableOpacity style={emailActive || passwordActive ? {...styles.button, backgroundColor:'#6F829F'}: styles.button} onPress={()=> !emailActive && !passwordActive && handleSignIn()} >
            <Text style={{color:'white', fontWeight:'bold'}}>Iniciar Sesion</Text>
           </TouchableOpacity>
           <View style={{flexDirection:'row',justifyContent:'flex-end', alignItems:'center'}}>
