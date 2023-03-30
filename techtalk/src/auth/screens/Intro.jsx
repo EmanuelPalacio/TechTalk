@@ -1,13 +1,14 @@
 import { View, Text, StyleSheet, Image,TouchableOpacity } from 'react-native'
 import React from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import Logo from '../../assets/logo.png'
-import Robot from '../../assets/robotSaluda.png'
+import Logo from '../../../assets/logo.png'
+import Robot from '../../../assets/robotSaluda.png'
 
 import { useNavigation } from '@react-navigation/native'
 export const Intro = () => {
 const{top}= useSafeAreaInsets()
 const navigation = useNavigation()
+console.log(process.env.LOCAL_HOST)
   return (
     <View style={{...styles.container,marginTop:top + 10}}  >
       <Image source={Logo} style={{width:160, height:185}} />

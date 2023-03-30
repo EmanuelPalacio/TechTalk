@@ -1,10 +1,11 @@
-import { View, Text,TouchableOpacity,Platform,Image, StyleSheet } from 'react-native'
+import { View, Text,TouchableOpacity,Platform,Image, StyleSheet, ScrollView } from 'react-native'
 import React from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import Logo from '../../assets/logo.png'
+import Logo from '../../../assets/logo.png'
 const AuthLayout = ({children,title= 'title1'}) => {
     const{top}=useSafeAreaInsets()
   return (
+    <ScrollView>
     <View style={{...styles.container,marginTop:top + 10}}>
       <Image source={Logo} style={{width:110, height:125}} />
       <View style={Platform.OS === 'android' ? {marginHorizontal:20, alignSelf:'flex-start', marginTop:10}: {marginHorizontal:20, alignSelf:'flex-start', marginTop:20}}>
@@ -31,6 +32,7 @@ const AuthLayout = ({children,title= 'title1'}) => {
           </TouchableOpacity>
       </View>
       </View>
+      </ScrollView>
   )
 }
 
