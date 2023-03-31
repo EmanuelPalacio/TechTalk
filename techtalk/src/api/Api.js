@@ -1,11 +1,9 @@
-import axios from "axios"
+import axios from "axios";
+import { LOCAL_HOST } from "@env";
 
-
-// const URL =
-//   process.env.NODE_ENV === 'development'
-//     ? LOCAL_HOST
-//     : process.env.PORT; 
+const URL =
+  process.env.NODE_ENV === "development" ? LOCAL_HOST : process.env.PORT;
 
 export const TechTalkApi = axios.create({
-    baseURL:'http://192.168.1.7:9000/api'
-})
+  baseURL: URL,
+});
