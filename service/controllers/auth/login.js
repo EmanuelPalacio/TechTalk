@@ -1,6 +1,6 @@
 import bcryptjs from 'bcryptjs';
 import { findUser } from '../../service/database/index.js';
-import generateJwt from '../../utils/generateJwt.js';
+import { generateJWT } from '../../utils/index.js';
 
 const login = async (req, res) => {
   const { password: passReceived, email } = req.body;
@@ -17,7 +17,7 @@ const login = async (req, res) => {
       });
     }
 
-    const token = await generateJwt(user._id, user.isAdmin);
+    const token = await generateJWT(user._id, user.isAdmin);
     res.status(200).json({
       ok: true,
       msg: 'Logged in successfully',

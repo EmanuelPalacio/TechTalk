@@ -1,7 +1,7 @@
 import { request, response } from 'express';
 import bcryptjs from 'bcryptjs';
 import { UserSchema } from '../../models/index.js';
-import generateJwt from '../../utils/generateJwt.js';
+import { generateJWT } from '../../utils/index.js';
 import { findUser } from '../../service/database/index.js';
 
 const googleLogin = async (req = request, res = response) => {
@@ -25,7 +25,7 @@ const googleLogin = async (req = request, res = response) => {
     }
     const { _id, rol } = findUser._doc;
 
-    const token = await generateJwt(_id, rol);
+    const token = await generateJWT(_id, rol);
     res.status(200).json({
       ok: true,
       msg: 'se recibio el token',
