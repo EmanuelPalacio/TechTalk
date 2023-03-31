@@ -1,4 +1,4 @@
-import {UserSchema} from "../../models/index.js";
+import { UserSchema } from '../../models/index.js';
 
 export const checkEmail = async (email = '') => {
   const findEmail = await UserSchema.findOne({ email });
@@ -7,6 +7,13 @@ export const checkEmail = async (email = '') => {
   }
 };
 
+export const checkId = async (id = '', { req }) => {
+  const findId = await UserSchema.findById(id);
+  if (!findId) {
+    throw new Error(`The user ${id} does not exist in the database`);
+  }
+  req.user = findId;
+};
 
 /* export const checkRol = async (rol = '') => {
   const verifyRol = await RolesSchema.findOne({ rol });
@@ -24,12 +31,6 @@ export const checkPassword = async (password = '') => {
   }
 };
 
-export const checkId = async (id = '') => {
-  const findId = await UserSchema.findById(id);
-  if (!findId) {
-    throw new Error(`El usuario ${id} no existe en la base de datos`);
-  }
-};
 
 export const colecctionUpdate = async (colecction = '') => {
   const colecctions = ['user', 'products'];
