@@ -1,4 +1,4 @@
-import express from 'express';
+import { Router } from 'express';
 import {
   deleteUser,
   findUser,
@@ -11,7 +11,7 @@ import {
   validateAdminRol,
   validateCreateUser,
 } from '../middleware/index.js';
-const router = express.Router();
+const router = Router();
 
 router.get('/', findUsers);
 
