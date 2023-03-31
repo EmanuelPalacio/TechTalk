@@ -30,7 +30,7 @@ app.use(urlencoded({ extended: true }));
 app.use('/api', router);
 
 server.listen(PORT, () => {
-  console.log('server iniciado');
+  console.log('server iniciado PORT || ', PORT);
 });
 
 /* ------ SOCKET IO ------- */
@@ -42,7 +42,3 @@ cloudinary.config();
 
 /* ------ CONNECT MONGODB ATLAS ------- */
 confingMongoDB();
-
-app.get('/', (req, res) => {
-  res.send('Server is Running...');
-});
