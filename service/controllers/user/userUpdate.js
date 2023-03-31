@@ -3,7 +3,7 @@ import { updateUser } from '../../service/database/index.js';
 
 const userUpdate = async (req, res) => {
   const { id } = req.params;
-  const { _id, email, google, password, githud, ...rest } = req.body;
+  const { _id, email, google, password, github, image, ...rest } = req.body;
   if (password) {
     const salt = bcryptjs.genSaltSync(10);
     rest.password = bcryptjs.hashSync(password, salt);
