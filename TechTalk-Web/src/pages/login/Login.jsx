@@ -1,4 +1,5 @@
-import HiRobot from '../../assets/HiRobot.jsx';
+import { HiRobot } from '../../assets/index.js';
+import FormLogin from './components/FormLogin.jsx';
 import style from './css/loginStyle.module.css';
 
 export default function Login() {
@@ -7,7 +8,9 @@ export default function Login() {
       <div className={style.login__robot}>
         <HiRobot />
       </div>
-      <div className={style.login__form}></div>
+      <div className={style.login__container_form}>
+        <FormLogin />
+      </div>
     </section>
   );
 }

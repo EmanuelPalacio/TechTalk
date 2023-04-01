@@ -1,0 +1,16 @@
+/* RESET CSS */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --color-primary: #ffffff;
+  --color-secundary: #2d4c7e;
+  --color-third: #5fbbe8;
+  --color-text: #000000;
+  --color-second-text: #3154a5;
+  --color-third-text: #ffffff;
+}

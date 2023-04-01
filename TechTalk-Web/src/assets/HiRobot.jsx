@@ -8,6 +8,7 @@ function HiRobot() {
       height='100%'
       fill='none'
       viewBox='0 0 705 978'
+      preserveAspectRatio='xMidYMid meet'
     >
       <g id='Hi Robot'>
         <g id='Brazo D'>
