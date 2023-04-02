@@ -1,3 +1,4 @@
+@import url('https://fonts.cdnfonts.com/css/geomanist');
 /* RESET CSS */
 *,
 *::before,
@@ -5,12 +6,29 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-size: 1rem;
+  font-family: 'Geomanist', sans-serif;
 }
+button {
+  cursor: pointer;
+}
+
+input,
+input:focus {
+  appearance: none;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+  outline: none;
+}
+
 :root {
-  --color-primary: #ffffff;
-  --color-secundary: #2d4c7e;
-  --color-third: #5fbbe8;
-  --color-text: #000000;
-  --color-second-text: #3154a5;
-  --color-third-text: #ffffff;
+  --color-primary: rgb(255, 255, 255);
+  --color-secondary: rgb(45, 76, 126);
+  --color-secondary-transparency: rgba(45, 76, 126, 0.2);
+  --color-third: rgb(95, 187, 232);
+  --color-text: rgb(0, 0, 0);
+  --color-text-second: rgb(255, 255, 255);
+  --color-second-text: rgb(49, 84, 165);
+  --color-third-text: rgb(255, 255, 255);
 }
