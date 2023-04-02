@@ -4,17 +4,35 @@ import emailIcon from '../../../assets/icons/email.svg';
 import securityIcon from '../../../assets/icons/security.svg';
 import eyeIcon from '../../../assets/icons/eye.svg';
 import GlobalButton from '../../../components/GlobalButton.jsx';
+import { useState } from 'react';
+import login from '../../../service/logins.js';
 
 export default function FormLogin() {
+  const [data, setData] = useState({});
+
+  const handleInput = (event) => {
+    setData({
+      ...data,
+      [event.target.name]: event.target.value,
+    });
+  };
+  const submitForm = async (event) => {
+    event.preventDefault();
+
+    const res = await login({ ...data });
+    console.log(res);
+  };
+
   return (
     <div className={style.login__content_form}>
       <div className={style.login__logo}>
         <Logo />
       </div>
-      <form className={style.form_login}>
+      <form onSubmit={submitForm} className={style.form_login}>
         <label className={style.form_label}>
           <img src={emailIcon} alt='email icon' />
           <input
+            onChange={handleInput}
             className={style.form_input}
             type='text'
             placeholder='email'
@@ -25,6 +43,7 @@ export default function FormLogin() {
         <label className={style.form_label}>
           <img src={securityIcon} alt='email icon' />
           <input
+            onChange={handleInput}
             className={style.form_input}
             type='password'
             placeholder='Contraseña'
