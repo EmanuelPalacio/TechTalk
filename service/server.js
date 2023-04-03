@@ -1,4 +1,4 @@
-import express from 'express';
+import { json, urlencoded } from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import router from './routes/index.routes.js';
@@ -24,13 +24,13 @@ app.use(
   }),
 );
 app.use(cookieParser());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(json());
+app.use(urlencoded({ extended: true }));
 // Routes
 app.use('/api', router);
 
 server.listen(PORT, () => {
-  console.log('server iniciado');
+  console.log('server iniciado PORT || ', PORT);
 });
 
 /* ------ CLOUDINARY ------- */
