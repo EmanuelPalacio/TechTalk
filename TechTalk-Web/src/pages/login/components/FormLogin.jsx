@@ -1,11 +1,10 @@
-import Logo from '../../../assets/Logo.jsx';
 import style from '../css/loginStyle.module.css';
 import emailIcon from '../../../assets/icons/email.svg';
 import securityIcon from '../../../assets/icons/security.svg';
 import eyeIcon from '../../../assets/icons/eye.svg';
 import GlobalButton from '../../../components/GlobalButton.jsx';
 import { useState } from 'react';
-import login from '../../../service/logins.js';
+import login from '../../../service/login.js';
 
 export default function FormLogin() {
   const [data, setData] = useState({});
@@ -24,10 +23,7 @@ export default function FormLogin() {
   };
 
   return (
-    <div className={style.login__content_form}>
-      <div className={style.login__logo}>
-        <Logo />
-      </div>
+    <>
       <form onSubmit={submitForm} className={style.form_login}>
         <label className={style.form_label}>
           <img src={emailIcon} alt='email icon' />
@@ -63,9 +59,6 @@ export default function FormLogin() {
           </button>
         </p>
       </form>
-      <hr />
-      {/* <GoogleLogin />
-        <GithubLogin /> */}
-    </div>
+    </>
   );
 }

@@ -1,35 +1,30 @@
 import { request, response } from 'express';
-import bcryptjs from 'bcryptjs';
-import { UserSchema } from '../../models/index.js';
 import { generateJWT } from '../../utils/index.js';
-import { findUser } from '../../service/database/index.js';
+import { createUserService, findUser } from '../../service/database/index.js';
 
 const googleLogin = async (req = request, res = response) => {
   const { email, picture, name } = req.google;
   try {
-    const user = findUser({ email });
+    const user = await findUser(email);
 
     if (!user) {
-      const salt = bcryptjs.genSaltSync();
-      const userCreate = await UserSchema.create({
+      const newUser = await createUserService({
+        fullname: name,
         email,
-        name,
+        password: 'p',
         image: {
           url: picture,
         },
-        password: ':P',
-        google: true,
+        email_Verification: true,
       });
-      userCreate.password = bcryptjs.hashSync(userCreate.password, salt);
-      await userCreate.save();
     }
-    const { _id, rol } = findUser._doc;
+    /*     const { _id, rol } = findUser._doc;
 
-    const token = await generateJWT(_id, rol);
+    const token = await generateJWT(_id, rol); */
     res.status(200).json({
       ok: true,
       msg: 'se recibio el token',
-      token,
+      /*       token, */
     });
   } catch (error) {
     res.status(500).json({
