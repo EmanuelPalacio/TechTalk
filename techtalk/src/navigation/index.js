@@ -11,6 +11,7 @@ import { SprintScreen } from '../screens/Example/SprintScreen';
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
+
   const{status}=useSelector(state=>state.auth)
 
   if(status === 'checking'){

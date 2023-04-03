@@ -5,12 +5,14 @@ export const authSlice = createSlice({
     initialState: {
         status:'unauthorized',
         token: null,
-        errorMessage: null
+        errorMessage: null,
+        user: {}
     },
     reducers: {
          logIn:(state,{payload})=>{
             state.status = 'authorized',
-            state.token = payload
+            state.token = payload.token,
+            state.user = payload.user
          },
          logOut:(state,{payload})=>{
             state.status= 'unauthorized'

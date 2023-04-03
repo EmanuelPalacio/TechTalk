@@ -20,7 +20,8 @@ export const useAuthStore = ()=>{
     dispatch(checking())
     try {
         const {data}= await TechTalkApi.post('/auth/login',{email,password})
-        dispatch(logIn(data.token)) 
+        
+        dispatch(logIn(data)) 
     } catch (error) {
         console.log(error)
         dispatch(logOut('Email or password Incorrect'))
