@@ -1,11 +1,10 @@
 import { createUserService } from '../../service/database/index.js';
 
 const userCreate = async (req, res) => {
-  const { phone, fullname, email, password } = req.body;
+  const { fullname, email, password } = req.body;
 
   try {
     await createUserService({
-      phone,
       fullname,
       email,
       password,
