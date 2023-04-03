@@ -1,6 +1,6 @@
 import bcryptjs from 'bcryptjs';
 import { findUser } from '../../service/database/index.js';
-import generateJwt from '../../utils/generateJwt.js';
+import generateJwt from '../../utils/generateJWT.js';
 
 const login = async (req, res) => {
   const { password: passReceived, email } = req.body;

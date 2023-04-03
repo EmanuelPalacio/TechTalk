@@ -1,7 +1,7 @@
 import { request, response } from 'express';
 import bcryptjs from 'bcryptjs';
 import { UserSchema } from '../../models/index.js';
-import generateJwt from '../../utils/generateJwt.js';
+import generateJwt from '../../utils/generateJWT.js';
 import { findUser } from '../../service/database/index.js';
 
 const googleLogin = async (req = request, res = response) => {
