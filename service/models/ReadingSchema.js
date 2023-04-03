@@ -1,9 +1,9 @@
 import { Schema, model } from 'mongoose';
 
 const Reading = new Schema({
-   level:{
-      type: String,
-      required: true,
+  level: {
+    type: String,
+    required: true,
   },
   text: {
     content: {
@@ -31,5 +31,5 @@ const Reading = new Schema({
   ],
 });
 
-const ReadingSchema = model('Listening', Reading);
+const ReadingSchema = model('Reading', Reading);
 export default ReadingSchema;

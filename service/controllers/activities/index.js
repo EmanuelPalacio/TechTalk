@@ -1,1 +1,1 @@
-export { getReadingSchema } from './findReadingSchemas.js';
+export { default as findReadingSchemas } from './findReadingSchemas.js';
