@@ -18,3 +18,13 @@ export const listUsers = async (from, limit) => {
   ]);
   return { total, users };
 };
+
+export const findReading = async (from, limit) => {
+  const [total, actvities] = await Promise.all([
+    UserSchema.count(),
+    UserSchema.find()
+      .skip(Number(from))
+      .limit(Number(limit))
+  ]);
+  return { total, actvities };
+};

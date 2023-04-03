@@ -1,6 +1,10 @@
 import { Schema, model } from 'mongoose';
 
 const Listening = new Schema({
+  level:{
+      type: String,
+      required: true,    
+  },
   audio: {
     url: {
       type: String,

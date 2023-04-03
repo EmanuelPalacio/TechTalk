@@ -1,6 +1,10 @@
 import { Schema, model } from 'mongoose';
 
 const Reading = new Schema({
+   level:{
+      type: String,
+      required: true,
+  },
   text: {
     content: {
       type: String,
