@@ -8,6 +8,7 @@ const validateLoginGoogle = [
   checkExpressValidator,
   async (req, res, next) => {
     try {
+      const { token } = req.headers;
       const client = new OAuth2Client(GOOGLE_CLIENT_ID);
       const dataUser = await client.verifyIdToken({
         idToken: token,
