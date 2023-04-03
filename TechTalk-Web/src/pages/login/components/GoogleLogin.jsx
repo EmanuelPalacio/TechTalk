@@ -15,7 +15,14 @@ export default function GoogleSingIn() {
       });
       google.accounts.id.renderButton(
         document.getElementById('buttonDiv'),
-        { theme: 'outline', size: 'large', logo_alignment: 'center' }, // customization attributes
+        {
+          theme: 'outline',
+          size: 'medium',
+          width: '250px',
+          shape: 'circle',
+          padding: '10px 25px',
+          border: '1px solid black',
+        }, // customization attributes
       );
     };
     return () => {
@@ -23,5 +30,14 @@ export default function GoogleSingIn() {
     };
   }, []);
 
-  return <div id='buttonDiv'></div>;
+  return (
+    <div
+      style={{
+        margin: '0 0 50px 0',
+        border: '1px solid black',
+        borderRadius: '15px',
+      }}
+      id='buttonDiv'
+    ></div>
+  );
 }
