@@ -2,8 +2,15 @@ import { View, Text,TouchableOpacity,Platform,Image, StyleSheet, ScrollView } fr
 import React from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import Logo from '../../../assets/logo.png'
+import { useSelector } from 'react-redux';
+
+
 const AuthLayout = ({children,title= 'title1'}) => {
+
     const{top}=useSafeAreaInsets()
+    const{status, user}=useSelector(state=>state.auth)
+  console.log(user)
+
   return (
     <ScrollView>
     <View style={{...styles.container,marginTop:top + 10}}>
