@@ -7,7 +7,7 @@ function Logo() {
       fill='none'
       viewBox='0 0 190 130'
     >
-      <g id='LogoTechTalk' clipPath='url(#clip0_0_1)'>
+      <g id='LogoTechTalk' ClipPath='url(#clip0_0_1)'>
         <g id='Logo'>
           <path
             id='point-6'
