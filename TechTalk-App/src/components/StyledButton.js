@@ -38,9 +38,8 @@ export default function StyledButton({ type, text, navigate }) {
 const styles = StyleSheet.create({
   text: {
     color: theme.colors.secondText,
-    fontSize: theme.fontSizes.body,
+    fontSize: theme.fontSizes.subheading,
     fontFamily: theme.fontFamily.main,
-    fontWeight: theme.fontWeights.bold,
   },
   button: {
     justifyContent: 'center',

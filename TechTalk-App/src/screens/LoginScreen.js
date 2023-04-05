@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
 import { SvgUri } from 'react-native-svg';
@@ -8,15 +8,27 @@ import theme from '../themes/theme.js';
 import StyledInput from '../components/StyledInput.js';
 
 const LoginScreen = () => {
+  const [inputValues, setInputValues] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleTextChange = (text, name) => {
+    setInputValues({
+      ...inputValues,
+      [name]: text,
+    });
+  };
+
   return (
     <View style={styles.root}>
       <View style={styles.logo}>
         <SvgUri uri='https://res.cloudinary.com/dshfifpgv/image/upload/v1680632381/Images%20proyect%20techTalk/TechTalkAssets/LogoTechTalk_y15vs5.svg' />
         <View style={styles.text}>
-          <StyledText fontSize='title' color='third' fontWeight='bold'>
+          <StyledText fontSize='title' fontWeight='bold'>
             ¡Bienvenido de vuelta!
           </StyledText>
-          <StyledText fontSize='subheading' color='secondary'>
+          <StyledText fontSize='subheading'>
             Ingresa tus datos para continuar
           </StyledText>
         </View>
@@ -25,11 +37,15 @@ const LoginScreen = () => {
         <StyledInput
           placeholder='Ingrese su email'
           url='https://res.cloudinary.com/dshfifpgv/image/upload/v1680632381/Images%20proyect%20techTalk/TechTalkAssets/icons/email_oz4rsn.svg'
+          onChangeText={(text) => handleTextChange(text, 'email')}
+          keyboardType='email'
         />
         <StyledInput
           placeholder='Contraseña'
           url='https://res.cloudinary.com/dshfifpgv/image/upload/v1680632381/Images%20proyect%20techTalk/TechTalkAssets/icons/security_dslnfa.svg'
           secondUrl='https://res.cloudinary.com/dshfifpgv/image/upload/v1680632381/Images%20proyect%20techTalk/TechTalkAssets/icons/eye-slash_ygsqvr.svg'
+          onChangeText={(text) => handleTextChange(text, 'password')}
+          secureTextEntry={true}
         />
       </View>
       <View style={styles.buttons}>

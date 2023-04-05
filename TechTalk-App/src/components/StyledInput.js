@@ -1,5 +1,4 @@
-import React from 'react';
-import { Text, StyleSheet, TextInput, View } from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
 import theme from '../themes/theme.js';
 import { SvgUri } from 'react-native-svg';
 
@@ -10,6 +9,7 @@ export default function StyledInput({
   value,
   keyboardType,
   onChangeText,
+  secureTextEntry,
 }) {
   return (
     <View style={styles.container}>
@@ -26,6 +26,7 @@ export default function StyledInput({
         value={value}
         onChangeText={onChangeText}
         keyboardType={keyboardType === 'email' ? 'email-address' : undefined}
+        secureTextEntry={secureTextEntry ? true : false}
         style={styles.input}
       />
       <SvgUri
