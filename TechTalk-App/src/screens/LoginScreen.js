@@ -1,13 +1,22 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+/* react / expo */
+import React, { useEffect, useState } from 'react';
+import { View, StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
 import { SvgUri } from 'react-native-svg';
+/* redux */
+import { useDispatch, useSelector } from 'react-redux';
+/* components and functions */
 import StyledText from '../components/StyledText.js';
 import StyledButton from '../components/StyledButton.js';
 import theme from '../themes/theme.js';
 import StyledInput from '../components/StyledInput.js';
+import login from '../services/login.js';
+import { logIn } from '../store/auth/AuthSlice.js';
 
 const LoginScreen = () => {
+  const auth = useSelector((store) => store.auth);
+  const dispatch = useDispatch();
+
   const [inputValues, setInputValues] = useState({
     email: '',
     password: '',
@@ -19,6 +28,23 @@ const LoginScreen = () => {
       [name]: text,
     });
   };
+  const sendForm = async () => {
+    try {
+      const { token, user } = await login(
+        inputValues.email,
+        inputValues.password,
+      );
+
+      console.log(token, user);
+      dispatch(logIn({ token, user }));
+    } catch (error) {
+      console.error('hola', error);
+    }
+  };
+
+  useEffect(() => {
+    console.log(auth);
+  }, [auth]);
 
   return (
     <View style={styles.root}>
@@ -49,7 +75,11 @@ const LoginScreen = () => {
         />
       </View>
       <View style={styles.buttons}>
-        <StyledButton type='primary' text='Iniciar Sesión' />
+        <StyledButton
+          type='primary'
+          text='Iniciar Sesión'
+          action={() => sendForm()}
+        />
       </View>
     </View>
   );
