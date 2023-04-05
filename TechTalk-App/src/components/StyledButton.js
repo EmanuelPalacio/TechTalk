@@ -1,12 +1,9 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { StyleSheet } from 'react-native';
 import theme from '../themes/theme.js';
 
-export default function StyledButton({ type, text, navigate }) {
-  const navigation = useNavigation();
-
+export default function StyledButton({ type, text, action }) {
   const textStyles = [
     styles.text,
 
@@ -28,7 +25,7 @@ export default function StyledButton({ type, text, navigate }) {
   ];
 
   return (
-    <TouchableOpacity onPress={() => navigation.navigate(navigate)}>
+    <TouchableOpacity onPress={() => action()}>
       <View style={styleButton}>
         <Text style={textStyles}>{text}</Text>
       </View>

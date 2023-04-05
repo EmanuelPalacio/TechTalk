@@ -5,8 +5,13 @@ import { SvgUri } from 'react-native-svg';
 import StyledText from '../components/StyledText.js';
 import StyledButton from '../components/StyledButton.js';
 import theme from '../themes/theme.js';
+import { useNavigation } from '@react-navigation/native';
 
 const Home = () => {
+  const navigation = useNavigation();
+  const nav = (route) => {
+    navigation.navigate(route);
+  };
   return (
     <View style={styles.root}>
       <View style={styles.logo}>
@@ -29,8 +34,16 @@ const Home = () => {
         />
       </View>
       <View style={styles.buttons}>
-        <StyledButton type='primary' text='Iniciar Sesión' navigate='Login' />
-        <StyledButton type='secondary' text='Registrarse' />
+        <StyledButton
+          type='primary'
+          text='Iniciar Sesión'
+          action={() => nav('Login')}
+        />
+        <StyledButton
+          type='secondary'
+          text='Registrarse'
+          action={() => nav('Register')}
+        />
       </View>
     </View>
   );
