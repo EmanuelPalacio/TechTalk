@@ -12,10 +12,10 @@ const Home = () => {
       <View style={styles.logo}>
         <SvgUri uri='https://res.cloudinary.com/dshfifpgv/image/upload/v1680633470/Images%20proyect%20techTalk/TechTalkAssets/Logo_am4uj0.svg' />
         <View style={styles.text}>
-          <StyledText fontSize='subheading' color='third'>
+          <StyledText fontSize='title' color='third'>
             ¡Bienvenido a{' '}
           </StyledText>
-          <StyledText fontSize='subheading' color='secondary' fontWeight='bold'>
+          <StyledText fontSize='title' color='secondary' fontWeight='bold'>
             TechTalk!
           </StyledText>
         </View>
@@ -29,7 +29,7 @@ const Home = () => {
         />
       </View>
       <View style={styles.buttons}>
-        <StyledButton type='primary' text='Iniciar Sesión' />
+        <StyledButton type='primary' text='Iniciar Sesión' navigate='Login' />
         <StyledButton type='secondary' text='Registrarse' />
       </View>
     </View>

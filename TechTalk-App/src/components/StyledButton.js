@@ -4,23 +4,6 @@ import { useNavigation } from '@react-navigation/native';
 import { StyleSheet } from 'react-native';
 import theme from '../themes/theme.js';
 
-const styles = StyleSheet.create({
-  text: {
-    color: theme.colors.secondText,
-    fontSize: theme.fontSizes.body,
-    fontFamily: theme.fontFamily.main,
-    fontWeight: theme.fontWeights.bold,
-  },
-  button: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 300,
-    height: 50,
-    borderRadius: 25,
-    minWidth: 200,
-  },
-});
-
 export default function StyledButton({ type, text, navigate }) {
   const navigation = useNavigation();
 
@@ -52,3 +35,19 @@ export default function StyledButton({ type, text, navigate }) {
     </TouchableOpacity>
   );
 }
+const styles = StyleSheet.create({
+  text: {
+    color: theme.colors.secondText,
+    fontSize: theme.fontSizes.body,
+    fontFamily: theme.fontFamily.main,
+    fontWeight: theme.fontWeights.bold,
+  },
+  button: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 300,
+    height: 50,
+    borderRadius: 25,
+    minWidth: 200,
+  },
+});
