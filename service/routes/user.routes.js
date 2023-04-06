@@ -11,6 +11,7 @@ import {
   validateAdminRol,
   validateCreateUser,
 } from '../middleware/index.js';
+
 const router = Router();
 
 router.get('/', findUsers);

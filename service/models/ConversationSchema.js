@@ -1,21 +1,16 @@
 import { Schema, model, Types } from 'mongoose';
 
 const Conversation = new Schema({
-  users: [
-    {
-      type: Types.ObjectId,
-      ref: 'User',
-    },
-  ],
+  users: {
+    type: Array,
+  },
   isPrivate: {
     type: Boolean,
     default: true,
   },
-  createdAt: {
-    type: Date,
-    required: true,
-  },
-});
+},
+{ timestamps: true }
+);
 
 Conversation.path('users').validate(function (value) {
   // El valor `this` se refiere al documento actual
