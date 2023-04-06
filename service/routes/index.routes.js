@@ -4,9 +4,11 @@ import userRoute from './user.routes.js';
 import uploadRoute from './upload.routes.js';
 import chatRoute from './chat.routes.js';
 import messageRoute from './message.routes.js'
+import activitiesRouter from './activities.routes.js';
 
 const router = Router();
 
+router.use('/activities', activitiesRouter)
 router.use('/user', userRoute);
 router.use('/auth', authRoute);
 router.use('/upload', uploadRoute);

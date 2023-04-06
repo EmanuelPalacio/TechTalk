@@ -1,4 +1,4 @@
-import { UserSchema } from '../../models/index.js';
+import { UserSchema, ReadingSchema } from '../../models/index.js';
 
 export const findUser = async (email) => {
   return await UserSchema.findOne({ email });
@@ -17,4 +17,12 @@ export const listUsers = async (from, limit) => {
       .select('_id username email isAdmin isActive'),
   ]);
   return { total, users };
+};
+
+export const findReading = async (from, limit) => {
+  const [total, actvities] = await Promise.all([
+    ReadingSchema.count(),
+    ReadingSchema.find().skip(Number(from)).limit(Number(limit)),
+  ]);
+  return { total, actvities };
 };
