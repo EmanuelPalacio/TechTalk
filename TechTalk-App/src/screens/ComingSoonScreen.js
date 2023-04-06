@@ -9,7 +9,7 @@ export default function ComingSoonScreen() {
       </StyledText>
       <Image
         source={{
-          uri: 'https://res.cloudinary.com/dshfifpgv/image/upload/v1680781222/Images%20proyect%20techTalk/TechTalkAssets/En_construcci%C3%B3n..._qqi8az.png',
+          uri: 'https://res.cloudinary.com/dshfifpgv/image/upload/v1680781051/Images%20proyect%20techTalk/TechTalkAssets/TabIcons/ConectarSelected_xb0jdv.png',
         }}
       />
     </View>
