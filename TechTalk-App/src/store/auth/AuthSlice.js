@@ -10,18 +10,16 @@ export const authSlice = createSlice({
   },
   reducers: {
     logIn: (state, { payload }) => {
-      (state.status = 'authorized'),
-        (state.token = payload.token),
-        (state.user = payload.user);
+      (state.token = payload.token), (state.user = payload.user);
     },
     logOut: (state, { payload }) => {
       state.status = 'unauthorized';
-      (state.token = null), (state.errorMessage = payload?.errorMessage);
+      state.user = {};
     },
-    checking: (state) => {
-      state.status = 'checking';
+    authorized: (state) => {
+      state.status = 'authorized';
     },
   },
 });
 
-export const { logIn, logOut, checking } = authSlice.actions;
+export const { logIn, logOut, authorized } = authSlice.actions;

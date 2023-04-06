@@ -11,32 +11,37 @@ import StyledButton from '../components/StyledButton.js';
 import theme from '../themes/theme.js';
 import StyledInput from '../components/StyledInput.js';
 import login from '../services/login.js';
-import { logIn } from '../store/auth/AuthSlice.js';
+import { authorized, logIn } from '../store/auth/AuthSlice.js';
+import getUserInfo from '../services/getUserInfo.js';
+import { fulfilled } from '../store/loading/LoadingSlice.js';
 
 const LoginScreen = () => {
   const auth = useSelector((store) => store.auth);
   const dispatch = useDispatch();
-
   const [inputValues, setInputValues] = useState({
     email: '',
     password: '',
   });
-
   const handleTextChange = (text, name) => {
     setInputValues({
       ...inputValues,
       [name]: text,
     });
   };
+
   const sendForm = async () => {
     try {
-      const { token, user } = await login(
+      const { id, token } = await login(
         inputValues.email,
         inputValues.password,
       );
-
-      console.log(token, user);
-      dispatch(logIn({ token, user }));
+      if (id) {
+        dispatch(authorized());
+        const user = await getUserInfo(id, token).then(() => {
+          dispatch(fulfilled());
+        });
+        dispatch(logIn({ user, token }));
+      }
     } catch (error) {
       console.error('hola', error);
     }

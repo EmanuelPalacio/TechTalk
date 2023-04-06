@@ -1,11 +1,11 @@
 import { Provider } from 'react-redux';
 import { store } from './src/store/store.js';
-import RootNavegation from './src/navigation/RootNavegation.js';
+import RootNavigation from './src/navigation/RootNavigation.js';
 
 export default function App() {
   return (
     <Provider store={store}>
-      <RootNavegation />
+      <RootNavigation />
     </Provider>
   );
 }
