@@ -8,7 +8,6 @@ export default function StyledText({
   fontSize,
   fontWeight,
   style,
-  ...restOfProps
 }) {
   const textStyles = [
     styles.text,

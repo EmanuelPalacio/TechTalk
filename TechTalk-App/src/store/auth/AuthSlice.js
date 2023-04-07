@@ -12,7 +12,7 @@ export const authSlice = createSlice({
     logIn: (state, { payload }) => {
       (state.token = payload.token), (state.user = payload.user);
     },
-    logOut: (state, { payload }) => {
+    logOut: (state) => {
       state.status = 'unauthorized';
       state.user = {};
     },

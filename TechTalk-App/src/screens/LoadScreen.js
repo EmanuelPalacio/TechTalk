@@ -1,4 +1,4 @@
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useIsFocused } from '@react-navigation/native';
 import { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SvgUri } from 'react-native-svg';
@@ -8,6 +8,7 @@ export default function LoadScreen({ route }) {
   const { status } = useSelector((store) => store.loading);
   const auth = useSelector((store) => store.auth);
   const navigation = useNavigation();
+  const isFocused = useIsFocused();
   const { timer } = route.params;
 
   useEffect(() => {
@@ -16,12 +17,12 @@ export default function LoadScreen({ route }) {
         navigation.navigate('Home');
       }, 3000);
     }
-    if (status === 'fulfilled') {
+    if (status === 'fulfilled' && isFocused) {
       navigation.navigate('App');
     }
     console.log(status);
     console.log(auth.status);
-  }, [status]);
+  }, [status, isFocused]);
   return (
     <View style={style.screen}>
       <SvgUri

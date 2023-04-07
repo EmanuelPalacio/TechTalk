@@ -14,10 +14,15 @@ import login from '../services/login.js';
 import { authorized, logIn } from '../store/auth/AuthSlice.js';
 import getUserInfo from '../services/getUserInfo.js';
 import { fulfilled } from '../store/loading/LoadingSlice.js';
+import StyledLink from '../components/StyledLink.js';
+import { useNavigation } from '@react-navigation/native';
 
 const LoginScreen = () => {
-  const auth = useSelector((store) => store.auth);
   const dispatch = useDispatch();
+  const navigation = useNavigation();
+  const nav = (route) => {
+    navigation.navigate(route);
+  };
   const [inputValues, setInputValues] = useState({
     email: '',
     password: '',
@@ -47,10 +52,6 @@ const LoginScreen = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(auth);
-  }, [auth]);
-
   return (
     <View style={styles.root}>
       <View style={styles.logo}>
@@ -79,12 +80,22 @@ const LoginScreen = () => {
           secureTextEntry={true}
         />
       </View>
+      <View style={styles.link}>
+        <StyledLink
+          text='¿Olvidaste tu contraseña?'
+          action={() => nav('Register')}
+        />
+      </View>
       <View style={styles.buttons}>
         <StyledButton
           type='primary'
           text='Iniciar Sesión'
           action={() => sendForm()}
         />
+      </View>
+      <View style={styles.link}>
+        <StyledText>¿No eres miembro? </StyledText>
+        <StyledLink text='Registrate' action={() => nav('Register')} />
       </View>
     </View>
   );
@@ -93,6 +104,7 @@ const LoginScreen = () => {
 const styles = StyleSheet.create({
   root: {
     flexDirection: 'column',
+    justifyContent: 'center',
     marginTop: Constants.statusBarHeight,
     marginBottom: Constants.bottomTabBarHeight,
     height: '100%',
@@ -103,7 +115,6 @@ const styles = StyleSheet.create({
   logo: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 30,
   },
   text: {
     flexDirection: 'column',
@@ -123,6 +134,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 10,
+  },
+  link: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    width: '90%',
+    marginBottom: 20,
   },
 });
 
