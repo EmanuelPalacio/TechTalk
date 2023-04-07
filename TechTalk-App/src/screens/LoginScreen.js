@@ -1,10 +1,10 @@
 /* react / expo */
-import React, { useState } from 'react';
+import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
 import { SvgUri } from 'react-native-svg';
 /* redux */
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 /* components and functions */
 import StyledText from '../components/StyledText.js';
 import StyledButton from '../components/StyledButton.js';
@@ -16,30 +16,22 @@ import getUserInfo from '../services/getUserInfo.js';
 import { fulfilled } from '../store/loading/LoadingSlice.js';
 import StyledLink from '../components/StyledLink.js';
 import { useNavigation } from '@react-navigation/native';
+import useDataCollection from '../hooks/useDataCollection.js';
 
 const LoginScreen = () => {
+  const [value, collection] = useDataCollection({
+    email: '',
+    password: '',
+  });
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const nav = (route) => {
     navigation.navigate(route);
   };
-  const [inputValues, setInputValues] = useState({
-    email: '',
-    password: '',
-  });
-  const handleTextChange = (text, name) => {
-    setInputValues({
-      ...inputValues,
-      [name]: text,
-    });
-  };
 
   const sendForm = async () => {
     try {
-      const { id, token } = await login(
-        inputValues.email,
-        inputValues.password,
-      );
+      const { id, token } = await login(value.email, value.password);
       if (id) {
         dispatch(authorized());
         const user = await getUserInfo(id, token).then(() => {
@@ -69,14 +61,14 @@ const LoginScreen = () => {
         <StyledInput
           placeholder='Ingrese su email'
           url='https://res.cloudinary.com/dshfifpgv/image/upload/v1680632381/Images%20proyect%20techTalk/TechTalkAssets/icons/email_oz4rsn.svg'
-          onChangeText={(text) => handleTextChange(text, 'email')}
+          onChangeText={(text) => collection(text, 'email')}
           keyboardType='email'
         />
         <StyledInput
           placeholder='Contraseña'
           url='https://res.cloudinary.com/dshfifpgv/image/upload/v1680632381/Images%20proyect%20techTalk/TechTalkAssets/icons/security_dslnfa.svg'
           secondUrl='https://res.cloudinary.com/dshfifpgv/image/upload/v1680632381/Images%20proyect%20techTalk/TechTalkAssets/icons/eye-slash_ygsqvr.svg'
-          onChangeText={(text) => handleTextChange(text, 'password')}
+          onChangeText={(text) => collection(text, 'password')}
           secureTextEntry={true}
         />
       </View>

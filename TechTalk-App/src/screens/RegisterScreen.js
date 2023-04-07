@@ -1,57 +1,45 @@
 /* react / expo */
-import React, { useState } from 'react';
-import {
-  View,
-  StyleSheet,
-  ScrollView,
-  KeyboardAvoidingView,
-} from 'react-native';
+import React from 'react';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import Constants from 'expo-constants';
 import { SvgUri } from 'react-native-svg';
 /* redux */
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 /* components and functions */
 import StyledText from '../components/StyledText.js';
 import StyledButton from '../components/StyledButton.js';
 import theme from '../themes/theme.js';
 import StyledInput from '../components/StyledInput.js';
-import login from '../services/login.js';
-import { authorized, logIn } from '../store/auth/AuthSlice.js';
+import { authorized } from '../store/auth/AuthSlice.js';
 import getUserInfo from '../services/getUserInfo.js';
 import { fulfilled } from '../store/loading/LoadingSlice.js';
 import StyledLink from '../components/StyledLink.js';
 import { useNavigation } from '@react-navigation/native';
+import useDataCollection from '../hooks/useDataCollection.js';
 
 const RegisterScreen = () => {
+  const [value, collection] = useDataCollection({
+    fullname: '',
+    email: '',
+    phone: '',
+    password,
+  });
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const nav = (route) => {
     navigation.navigate(route);
   };
-  const [inputValues, setInputValues] = useState({
-    email: '',
-    password: '',
-  });
-  const handleTextChange = (text, name) => {
-    setInputValues({
-      ...inputValues,
-      [name]: text,
-    });
-  };
 
   const sendForm = async () => {
     try {
-      const { id, token } = await login(
-        inputValues.email,
-        inputValues.password,
-      );
-      if (id) {
+      const { id, token } = await register(value.email, value.password);
+      /* if (id) {
         dispatch(authorized());
         const user = await getUserInfo(id, token).then(() => {
           dispatch(fulfilled());
         });
         dispatch(logIn({ user, token }));
-      }
+      } */
     } catch (error) {
       console.error('hola', error);
     }
@@ -79,26 +67,26 @@ const RegisterScreen = () => {
         <StyledInput
           placeholder='Ingrese su nombre'
           url='https://res.cloudinary.com/dshfifpgv/image/upload/v1680883858/Images%20proyect%20techTalk/TechTalkAssets/icons/personIcon_umdapq.svg'
-          onChangeText={(text) => handleTextChange(text, 'fullname')}
+          onChangeText={(text) => collection(text, 'fullname')}
           keyboardType='email'
         />
         <StyledInput
           placeholder='Ingrese su email'
           url='https://res.cloudinary.com/dshfifpgv/image/upload/v1680632381/Images%20proyect%20techTalk/TechTalkAssets/icons/email_oz4rsn.svg'
-          onChangeText={(text) => handleTextChange(text, 'email')}
+          onChangeText={(text) => collection(text, 'email')}
           keyboardType='email'
         />
         <StyledInput
           placeholder='Ingrese su celular'
           url='https://res.cloudinary.com/dshfifpgv/image/upload/v1680883793/Images%20proyect%20techTalk/TechTalkAssets/icons/phone_knsfm4.svg'
-          onChangeText={(text) => handleTextChange(text, 'phone')}
+          onChangeText={(text) => collection(text, 'phone')}
           keyboardType='email'
         />
         <StyledInput
           placeholder='Contraseña'
           url='https://res.cloudinary.com/dshfifpgv/image/upload/v1680632381/Images%20proyect%20techTalk/TechTalkAssets/icons/security_dslnfa.svg'
           secondUrl='https://res.cloudinary.com/dshfifpgv/image/upload/v1680632381/Images%20proyect%20techTalk/TechTalkAssets/icons/eye-slash_ygsqvr.svg'
-          onChangeText={(text) => handleTextChange(text, 'password')}
+          onChangeText={(text) => collection(text, 'password')}
           secureTextEntry={true}
         />
       </View>
