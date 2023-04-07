@@ -4,9 +4,10 @@ const theme = {
     secondary: '#2D4C7E',
     secondaryTransparency: '#2D4C7E33',
     third: '#5FBBE8',
-    PrimaryText: '#000000',
+    primaryText: '#000000',
     secondText: '#FFFFFF',
-    thirdText: '#3154A5',
+    thirdText: '#5FBBE8',
+    fourthText: '#2D4C7E',
   },
   fontSizes: {
     body: 16,

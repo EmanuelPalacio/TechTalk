@@ -15,13 +15,11 @@ export default function LoadScreen({ route }) {
     if (timer && auth.status === 'unauthorized') {
       setTimeout(() => {
         navigation.navigate('Home');
-      }, 3000);
+      }, 2000);
     }
     if (status === 'fulfilled' && isFocused) {
       navigation.navigate('App');
     }
-    console.log(status);
-    console.log(auth.status);
   }, [status, isFocused]);
   return (
     <View style={style.screen}>
