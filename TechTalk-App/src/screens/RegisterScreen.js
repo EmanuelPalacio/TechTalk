@@ -10,19 +10,18 @@ import StyledText from '../components/StyledText.js';
 import StyledButton from '../components/StyledButton.js';
 import theme from '../themes/theme.js';
 import StyledInput from '../components/StyledInput.js';
-import { authorized } from '../store/auth/AuthSlice.js';
-import getUserInfo from '../services/getUserInfo.js';
 import { fulfilled } from '../store/loading/LoadingSlice.js';
 import StyledLink from '../components/StyledLink.js';
 import { useNavigation } from '@react-navigation/native';
 import useDataCollection from '../hooks/useDataCollection.js';
+import register from '../services/register.js';
 
 const RegisterScreen = () => {
   const [value, collection] = useDataCollection({
     fullname: '',
     email: '',
     phone: '',
-    password,
+    password: '',
   });
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -32,7 +31,8 @@ const RegisterScreen = () => {
 
   const sendForm = async () => {
     try {
-      const { id, token } = await register(value.email, value.password);
+      const userCreate = await register({ ...value });
+      console.log(userCreate);
       /* if (id) {
         dispatch(authorized());
         const user = await getUserInfo(id, token).then(() => {
