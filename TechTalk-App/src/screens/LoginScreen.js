@@ -1,6 +1,6 @@
 /* react / expo */
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import Constants from 'expo-constants';
 import { SvgUri } from 'react-native-svg';
 /* redux */
@@ -45,7 +45,7 @@ const LoginScreen = () => {
   };
 
   return (
-    <View style={styles.root}>
+    <ScrollView contentContainerStyle={styles.root}>
       <View style={styles.logo}>
         <SvgUri uri='https://res.cloudinary.com/dshfifpgv/image/upload/v1680632381/Images%20proyect%20techTalk/TechTalkAssets/LogoTechTalk_y15vs5.svg' />
         <View style={styles.text}>
@@ -89,7 +89,7 @@ const LoginScreen = () => {
         <StyledText>¿No eres miembro? </StyledText>
         <StyledLink text='Registrate' action={() => nav('Register')} />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: Constants.statusBarHeight,
     marginBottom: Constants.bottomTabBarHeight,
-    height: '100%',
+    minHeight: '100%',
     width: '100%',
     gap: 15,
     backgroundColor: theme.colors.primary,
