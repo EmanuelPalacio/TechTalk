@@ -156,7 +156,6 @@ const styles = StyleSheet.create({
     minWidth: 20,
     minHeight: 20,
     backgroundColor: theme.colors.third,
-    borderRadius: '50%',
     top: 15,
     left: 20,
   },

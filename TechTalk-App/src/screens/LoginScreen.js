@@ -32,11 +32,10 @@ const LoginScreen = () => {
   const sendForm = async () => {
     try {
       const { id, token } = await login(value.email, value.password);
-      if (id) {
+      if (token) {
         dispatch(authorized());
-        const user = await getUserInfo(id, token).then(() => {
-          dispatch(fulfilled());
-        });
+        const user = await getUserInfo(id, token);
+        user && dispatch(fulfilled());
         dispatch(logIn({ user, token }));
       }
     } catch (error) {
