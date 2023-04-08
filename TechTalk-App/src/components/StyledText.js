@@ -8,13 +8,12 @@ export default function StyledText({
   fontSize,
   fontWeight,
   style,
-  ...restOfProps
 }) {
   const textStyles = [
     styles.text,
-    color === 'primary' && styles.colorPrimary,
     color === 'secondary' && styles.colorSecondary,
     color === 'third' && styles.colorThird,
+    color === 'fourth' && styles.colorFourth,
     fontSize === 'subheading' && styles.subHeading,
     fontSize === 'title' && styles.title,
     fontWeight === 'bold' && styles.bold,
@@ -24,7 +23,7 @@ export default function StyledText({
 }
 const styles = StyleSheet.create({
   text: {
-    color: theme.colors.PrimaryText,
+    color: theme.colors.primaryText,
     fontSize: theme.fontSizes.body,
     fontFamily: theme.fontFamily.main,
     fontWeight: theme.fontWeights.normal,
@@ -39,13 +38,13 @@ const styles = StyleSheet.create({
   title: {
     fontSize: theme.fontSizes.header,
   },
-  colorPrimary: {
-    color: theme.colors.primary,
-  },
   colorSecondary: {
-    color: theme.colors.secondary,
+    color: theme.colors.secondText,
   },
   colorThird: {
-    color: theme.colors.third,
+    color: theme.colors.thirdText,
+  },
+  colorFourth: {
+    color: theme.colors.fourthText,
   },
 });

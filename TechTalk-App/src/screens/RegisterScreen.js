@@ -10,17 +10,17 @@ import StyledText from '../components/StyledText.js';
 import StyledButton from '../components/StyledButton.js';
 import theme from '../themes/theme.js';
 import StyledInput from '../components/StyledInput.js';
-import login from '../services/login.js';
-import { authorized, logIn } from '../store/auth/AuthSlice.js';
-import getUserInfo from '../services/getUserInfo.js';
 import { fulfilled } from '../store/loading/LoadingSlice.js';
 import StyledLink from '../components/StyledLink.js';
 import { useNavigation } from '@react-navigation/native';
 import useDataCollection from '../hooks/useDataCollection.js';
+import register from '../services/register.js';
 
-const LoginScreen = () => {
+const RegisterScreen = () => {
   const [value, collection] = useDataCollection({
+    fullname: '',
     email: '',
+    phone: '',
     password: '',
   });
   const dispatch = useDispatch();
@@ -31,13 +31,15 @@ const LoginScreen = () => {
 
   const sendForm = async () => {
     try {
-      const { id, token } = await login(value.email, value.password);
-      if (token) {
+      const userCreate = await register({ ...value });
+      console.log(userCreate);
+      /* if (id) {
         dispatch(authorized());
-        const user = await getUserInfo(id, token);
-        user && dispatch(fulfilled());
+        const user = await getUserInfo(id, token).then(() => {
+          dispatch(fulfilled());
+        });
         dispatch(logIn({ user, token }));
-      }
+      } */
     } catch (error) {
       console.error('hola', error);
     }
@@ -48,9 +50,14 @@ const LoginScreen = () => {
       <View style={styles.logo}>
         <SvgUri uri='https://res.cloudinary.com/dshfifpgv/image/upload/v1680632381/Images%20proyect%20techTalk/TechTalkAssets/LogoTechTalk_y15vs5.svg' />
         <View style={styles.text}>
-          <StyledText fontSize='title' fontWeight='bold'>
-            ¡Bienvenido de vuelta!
-          </StyledText>
+          <View style={styles.title}>
+            <StyledText fontSize='title' color='third' fontWeight='bold'>
+              ¡Bienvenido a{' '}
+            </StyledText>
+            <StyledText fontSize='title' color='fourth' fontWeight='bold'>
+              TechTalk!
+            </StyledText>
+          </View>
           <StyledText fontSize='subheading'>
             Ingresa tus datos para continuar
           </StyledText>
@@ -58,9 +65,21 @@ const LoginScreen = () => {
       </View>
       <View style={styles.form}>
         <StyledInput
+          placeholder='Ingrese su nombre'
+          url='https://res.cloudinary.com/dshfifpgv/image/upload/v1680883858/Images%20proyect%20techTalk/TechTalkAssets/icons/personIcon_umdapq.svg'
+          onChangeText={(text) => collection(text, 'fullname')}
+          keyboardType='email'
+        />
+        <StyledInput
           placeholder='Ingrese su email'
           url='https://res.cloudinary.com/dshfifpgv/image/upload/v1680632381/Images%20proyect%20techTalk/TechTalkAssets/icons/email_oz4rsn.svg'
           onChangeText={(text) => collection(text, 'email')}
+          keyboardType='email'
+        />
+        <StyledInput
+          placeholder='Ingrese su celular'
+          url='https://res.cloudinary.com/dshfifpgv/image/upload/v1680883793/Images%20proyect%20techTalk/TechTalkAssets/icons/phone_knsfm4.svg'
+          onChangeText={(text) => collection(text, 'phone')}
           keyboardType='email'
         />
         <StyledInput
@@ -71,12 +90,6 @@ const LoginScreen = () => {
           secureTextEntry={true}
         />
       </View>
-      <View style={styles.link}>
-        <StyledLink
-          text='¿Olvidaste tu contraseña?'
-          action={() => nav('Register')}
-        />
-      </View>
       <View style={styles.buttons}>
         <StyledButton
           type='primary'
@@ -85,8 +98,8 @@ const LoginScreen = () => {
         />
       </View>
       <View style={styles.link}>
-        <StyledText>¿No eres miembro? </StyledText>
-        <StyledLink text='Registrate' action={() => nav('Register')} />
+        <StyledText>¿Ya eres miembro? </StyledText>
+        <StyledLink text='inicia sesión' action={() => nav('Login')} />
       </View>
     </ScrollView>
   );
@@ -96,6 +109,7 @@ const styles = StyleSheet.create({
   root: {
     flexDirection: 'column',
     justifyContent: 'center',
+    alignItems: 'center',
     marginTop: Constants.statusBarHeight,
     marginBottom: Constants.bottomTabBarHeight,
     minHeight: '100%',
@@ -106,6 +120,9 @@ const styles = StyleSheet.create({
   logo: {
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  title: {
+    flexDirection: 'row',
   },
   text: {
     flexDirection: 'column',
@@ -134,4 +151,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default RegisterScreen;
