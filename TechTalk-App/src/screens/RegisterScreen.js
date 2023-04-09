@@ -10,7 +10,6 @@ import StyledText from '../components/StyledText.js';
 import StyledButton from '../components/StyledButton.js';
 import theme from '../themes/theme.js';
 import StyledInput from '../components/StyledInput.js';
-import { fulfilled } from '../store/loading/LoadingSlice.js';
 import StyledLink from '../components/StyledLink.js';
 import { useNavigation } from '@react-navigation/native';
 import useDataCollection from '../hooks/useDataCollection.js';
@@ -23,7 +22,6 @@ const RegisterScreen = () => {
     phone: '',
     password: '',
   });
-  const dispatch = useDispatch();
   const navigation = useNavigation();
   const nav = (route) => {
     navigation.navigate(route);

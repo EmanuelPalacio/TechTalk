@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import theme from '../themes/theme.js';
 import { SvgUri } from 'react-native-svg';
 import StyledText from '../components/StyledText.js';
+import UserProfileNavigation from './UserProfileNavigation.js';
 
 const Tab = createBottomTabNavigator();
 
@@ -119,8 +120,9 @@ const TabNavigation = () => {
       />
       <Tab.Screen
         name='Perfil'
-        component={ComingSoonScreen}
+        component={UserProfileNavigation}
         options={{
+          headerShown: false,
           tabBarIcon: ({ focused }) => {
             return (
               <Image
