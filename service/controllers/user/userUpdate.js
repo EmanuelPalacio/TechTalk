@@ -12,7 +12,7 @@ const userUpdate = async (req, res) => {
     const user = await updateUser(id, rest);
     res.status(201).json({
       ok: true,
-      mgs: 'Usuario actualizado con exito',
+      mgs: 'User updated successfully',
       user,
     });
   } catch (error) {

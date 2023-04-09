@@ -6,3 +6,4 @@ export { default as validateCreateUser } from './validateCreateUser.js';
 export { default as validateLogin } from './validateLogin.js';
 export { default as validateLoginGoogle } from './validateLoginGoogle.js';
 export { default as validateUserImage } from './validateUserImage.js';
+export { default as validateListeningAudio } from './validateListeningAudio.js';

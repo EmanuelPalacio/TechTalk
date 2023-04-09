@@ -10,23 +10,19 @@ const Reading = new Schema({
       type: String,
       required: true,
     },
-    tittle: {
+    title: {
       type: String,
       required: true,
     },
   },
-  listOfQuestions: [
+  question: {
+    type: String,
+    required: true,
+  },
+  listOfAnswers: [
     {
-      question: {
-        type: String,
-        required: true,
-      },
-      answers: [
-        {
-          answer: { type: String, required: true },
-          isCorrect: { type: Boolean, required: true },
-        },
-      ],
+      answer: { type: String, required: true },
+      isCorrect: { type: Boolean, required: true },
     },
   ],
 });

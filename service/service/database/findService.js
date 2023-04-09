@@ -26,3 +26,7 @@ export const findReading = async (from, limit) => {
   ]);
   return { total, actvities };
 };
+
+export const findReadingById = async (id) => {
+  return await ReadingSchema.findById(id);
+};

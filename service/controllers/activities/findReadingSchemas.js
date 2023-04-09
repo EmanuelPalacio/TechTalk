@@ -1,7 +1,7 @@
 import { findReading } from '../../service/database/findService.js';
 
 const findReadingSchemas = async (req, res) => {
-  const { limit = 10, from = 0 } = req.body;
+  const { limit = 15, from = 0 } = req.body;
   try {
     const activity = await findReading(from, limit);
     res.status(200).json({

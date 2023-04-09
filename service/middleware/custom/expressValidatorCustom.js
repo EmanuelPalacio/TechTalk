@@ -1,4 +1,4 @@
-import { UserSchema } from '../../models/index.js';
+import { ReadingSchema, UserSchema } from '../../models/index.js';
 
 export const checkEmail = async (email = '') => {
   const findEmail = await UserSchema.findOne({ email });
@@ -13,6 +13,13 @@ export const checkId = async (id = '', { req }) => {
     throw new Error(`The user ${id} does not exist in the database`);
   }
   req.user = findId;
+};
+
+export const checkTitle = async (title) => {
+  const existingReading = await ReadingSchema.findOne({ 'text.title': title });
+  if (existingReading) {
+    throw new Error(`El título "${title}" ya existe en la base de datos`);
+  }
 };
 
 /* export const checkRol = async (rol = '') => {
