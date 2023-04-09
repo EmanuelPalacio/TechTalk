@@ -17,6 +17,7 @@ import { fulfilled } from '../store/loading/LoadingSlice.js';
 import StyledLink from '../components/StyledLink.js';
 import { useNavigation } from '@react-navigation/native';
 import useDataCollection from '../hooks/useDataCollection.js';
+import GoogleLogin from '../components/GoogleLogin.js';
 
 const LoginScreen = () => {
   const [value, collection] = useDataCollection({
@@ -88,6 +89,7 @@ const LoginScreen = () => {
         <StyledText>¿No eres miembro? </StyledText>
         <StyledLink text='Registrate' action={() => nav('Register')} />
       </View>
+      <GoogleLogin />
     </ScrollView>
   );
 };
