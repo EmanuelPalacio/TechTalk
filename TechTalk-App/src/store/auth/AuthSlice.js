@@ -13,7 +13,7 @@ export const authSlice = createSlice({
       state.token = action.payload.token;
       state.user = action.payload.user;
     },
-    logOut: (state, { payload }) => {
+    logOut: (state) => {
       state.status = 'unauthorized';
       state.user = {};
     },

@@ -1,13 +1,61 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ComingSoonScreen from '../screens/ComingSoonScreen.js';
+<<<<<<< HEAD
 import { Image } from 'react-native';
 import ChatsScreen from '../screens/chats/ChatsScreen.js'
+=======
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import theme from '../themes/theme.js';
+import { SvgUri } from 'react-native-svg';
+import StyledText from '../components/StyledText.js';
+
+>>>>>>> 029986ad20c3e09253fd782c789f66129afd240b
 const Tab = createBottomTabNavigator();
 
+/* En esta parte va la logia de socket.io para las notificaciones */
+
 const TabNavigation = () => {
+  const navigation = useNavigation();
+
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        headerTitleAlign: 'center',
+        headerTintColor: theme.colors.primaryText,
+        headerStyle: {
+          backgroundColor: theme.colors.primaryBackground,
+          elevation: 5,
+          shadowOffset: { width: 0, height: 10 },
+          shadowColor: 'black',
+          shadowOpacity: 0.5,
+          shadowRadius: 10,
+        },
+        headerLeftContainerStyle: {
+          paddingLeft: 20,
+        },
+        headerRightContainerStyle: {
+          paddingRight: 20,
+        },
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => navigation.goBack()}>
+            <SvgUri uri='https://res.cloudinary.com/dshfifpgv/image/upload/v1680910700/Images%20proyect%20techTalk/TechTalkAssets/TabIcons/Volver_ilvo2t.svg' />
+          </TouchableOpacity>
+        ),
+        headerRight: () => (
+          <TouchableOpacity
+            style={styles.containerNotification}
+            /* onPress={() => navigation.goBack()} */
+          >
+            <SvgUri uri='https://res.cloudinary.com/dshfifpgv/image/upload/v1680921806/Images%20proyect%20techTalk/TechTalkAssets/TabIcons/Notificaciones_aqqttv.svg' />
+            <View style={styles.notificationCircle}>
+              <StyledText color='secondary'>2</StyledText>
+            </View>
+          </TouchableOpacity>
+        ),
+      }}
+    >
       <Tab.Screen
         name='Conectar'
         component={ComingSoonScreen}
@@ -101,3 +149,19 @@ const TabNavigation = () => {
 };
 
 export default TabNavigation;
+
+const styles = StyleSheet.create({
+  containerNotification: {
+    position: 'relative',
+  },
+  notificationCircle: {
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minWidth: 20,
+    minHeight: 20,
+    backgroundColor: theme.colors.third,
+    top: 15,
+    left: 20,
+  },
+});

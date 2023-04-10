@@ -45,3 +45,7 @@ export const findFriends  = async (req, res) => {
     res.status(500).json(err);
   }
 };
+
+export const findReadingById = async (id) => {
+  return await ReadingSchema.findById(id);
+};

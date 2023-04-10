@@ -26,6 +26,7 @@ export default function StyledInput({
         value={value}
         onChangeText={onChangeText}
         keyboardType={keyboardType === 'email' ? 'email-address' : undefined}
+        autoCapitalize={keyboardType === 'email' ? 'none' : undefined}
         secureTextEntry={secureTextEntry ? true : false}
         style={styles.input}
       />
