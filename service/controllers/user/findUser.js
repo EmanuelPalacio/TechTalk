@@ -5,7 +5,6 @@ const findUser = async (req, res) => {
   try {
     const dateUser = await findUserById(id);
     const { __v, password, ...user } = dateUser._doc;
-    console.log(user)
     res.status(200).json({
       ok: true,
       user,
