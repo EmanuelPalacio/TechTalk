@@ -2,9 +2,7 @@ import { Schema, model, Types } from 'mongoose';
 
 const Message = new Schema({
   conversation: {
-    type: Types.ObjectId,
-    ref: 'Conversation',
-    immutable: true,
+    type: String,
   },
   sender: {
     type: Types.ObjectId,
@@ -14,11 +12,9 @@ const Message = new Schema({
   text: {
     type: String,
   },
-  createdAt: {
-    type: Date,
-    required: true,
-  },
-});
+},
+{ timestamps: true }
+);
 
 const MessageSchema = model('Message', Message);
 export default MessageSchema;
