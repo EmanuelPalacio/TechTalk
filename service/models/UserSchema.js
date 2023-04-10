@@ -33,7 +33,7 @@ const user = new Schema({
       type: String,
     },
   },
-  friends_contacts: [{ type: Types.ObjectId, ref: 'User' }],
+  friends_contacts: [{ type: Array, }],
   email_Verification: {
     type: Boolean,
     default: false,
