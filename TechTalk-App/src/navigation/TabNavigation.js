@@ -7,6 +7,7 @@ import theme from '../themes/theme.js';
 import { SvgUri } from 'react-native-svg';
 import StyledText from '../components/StyledText.js';
 import UserProfileNavigation from './UserProfileNavigation.js';
+import chatsScreen from '../screens/chats/ChatsScreen.js';
 
 const Tab = createBottomTabNavigator();
 
@@ -76,7 +77,7 @@ const TabNavigation = () => {
       />
       <Tab.Screen
         name='Chat'
-        component={ComingSoonScreen}
+        component={chatsScreen}
         options={{
           tabBarIcon: ({ focused }) => {
             return (
