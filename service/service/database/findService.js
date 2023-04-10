@@ -5,7 +5,8 @@ export const findUser = async (email) => {
 };
 
 export const findUserById = async (id) => {
-  return await UserSchema.findById(id);
+  const user = await UserSchema.findById(id);
+  return user.populate('friends_contacts', 'fullname image phone');
 };
 
 export const listUsers = async (from, limit) => {
@@ -31,21 +32,12 @@ export const findReadingById = async (id) => {
   return await ReadingSchema.findById(id);
 };
 
-export const findFriends  = async (req, res) => {
+export const findFriends = async (id) => {
   try {
-    const user = await UserSchema.findById(req.params.id);
-    const friends = await Promise.all(
-      user.friends_contacts.map((friendId) => {
-        return UserSchema.findById(friendId);
-      })
-    );
-    let friendList = [];
-    friends.map((friend) => {
-      const { _id, fullname, image_url } = friend;
-      friendList.push({ _id, fullname, image_url });
-    });
-    res.status(200).json(friendList)
+    const user = await UserSchema.findById(id);
+    user.populate('friends_contacts').select('_id image fullname phone ');
+    return user;
   } catch (err) {
-    res.status(500).json(err);
+    console.log(err);
   }
 };

@@ -1,15 +1,16 @@
 import { Schema, model, Types } from 'mongoose';
 
-const Conversation = new Schema({
-  users: {
-    type: Array,
+const Conversation = new Schema(
+  {
+    users: {
+      type: [{ type: Types.ObjectId, ref: 'User' }],
+    },
+    isPrivate: {
+      type: Boolean,
+      default: true,
+    },
   },
-  isPrivate: {
-    type: Boolean,
-    default: true,
-  },
-},
-{ timestamps: true }
+  { timestamps: true },
 );
 
 Conversation.path('users').validate(function (value) {
