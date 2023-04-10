@@ -121,6 +121,7 @@ const TabNavigation = () => {
       <Tab.Screen
         name='Perfil'
         component={UserProfileNavigation}
+        initialRouteName='Profile'
         options={{
           headerShown: false,
           tabBarIcon: ({ focused }) => {

@@ -5,6 +5,7 @@ import theme from '../themes/theme.js';
 import { TouchableOpacity } from 'react-native';
 import { SvgUri } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/native';
+import ProfileScreen from '../screens/ProfileScreen.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -34,7 +35,7 @@ const UserProfileNavigation = () => {
     >
       <Stack.Screen
         name='Profile'
-        component={ComingSoonScreen}
+        component={ProfileScreen}
         options={{
           title: 'Mi perfil',
           headerLeft: () => (
