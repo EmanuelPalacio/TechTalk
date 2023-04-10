@@ -20,7 +20,7 @@ const Home = () => {
           <StyledText fontSize='title' color='third'>
             ¡Bienvenido a{' '}
           </StyledText>
-          <StyledText fontSize='title' color='secondary' fontWeight='bold'>
+          <StyledText fontSize='title' color='fourth' fontWeight='bold'>
             TechTalk!
           </StyledText>
         </View>

@@ -4,6 +4,7 @@ import {
   ScrollView,
   StyleSheet,
   View,
+  Dimensions,
 } from 'react-native';
 import theme from '../themes/theme.js';
 import StyledText from '../components/StyledText.js';
@@ -102,7 +103,6 @@ const ProfileScreen = () => {
 export default ProfileScreen;
 const styles = StyleSheet.create({
   root: {
-    flexDirection: 'column',
     width: '100%',
     minHeight: '100%',
     backgroundColor: theme.colors.primary,
@@ -110,7 +110,6 @@ const styles = StyleSheet.create({
 
   containerImage: {
     position: 'relative',
-    overflow: 'visible',
     width: '100%',
     height: 210,
   },
@@ -141,7 +140,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     gap: 10,
-    width: '100%',
+    marginTop: 80,
   },
   activity: {
     flexDirection: 'row',
