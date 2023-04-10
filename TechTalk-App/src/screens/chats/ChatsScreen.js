@@ -6,6 +6,8 @@ import { socket } from '../../services/socketConnect.js';
 import { useIsFocused } from '@react-navigation/native';
 
 const ChatsScreen = () => {
+  // conecta socket
+  socket.connect()
   // traer el usuario logueado
   const { user } = useSelector((store) => store.auth.user);
   console.log('chatscreen user : ', user);
