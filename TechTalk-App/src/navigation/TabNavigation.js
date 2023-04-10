@@ -46,7 +46,7 @@ const TabNavigation = () => {
           >
             <SvgUri uri='https://res.cloudinary.com/dshfifpgv/image/upload/v1680921806/Images%20proyect%20techTalk/TechTalkAssets/TabIcons/Notificaciones_aqqttv.svg' />
             <View style={styles.notificationCircle}>
-              <StyledText color='secondary'>2</StyledText>
+              <StyledText color='secondary'>3</StyledText>
             </View>
           </TouchableOpacity>
         ),
@@ -156,8 +156,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     justifyContent: 'center',
     alignItems: 'center',
-    minWidth: 20,
-    minHeight: 20,
+    minWidth: 24,
+    minHeight: 24,
+    borderRadius: 12,
     backgroundColor: theme.colors.third,
     top: 15,
     left: 20,
