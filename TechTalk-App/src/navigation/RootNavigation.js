@@ -13,7 +13,7 @@ const RootNavegation = () => {
   return (
     <NavigationContainer>
       {status === 'unauthorized' ? (
-        <TabNavigation />
+        <HomeNavigation />
       ) : (
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen

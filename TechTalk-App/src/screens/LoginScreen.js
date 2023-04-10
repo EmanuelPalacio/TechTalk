@@ -37,7 +37,6 @@ const LoginScreen = () => {
         const user = await getUserInfo(id, token);
         user && dispatch(fulfilled());
         dispatch(logIn({ user, token }));
-        console.log("Usuario : ", user)
       }
     } catch (error) {
       console.error('hola', error);
