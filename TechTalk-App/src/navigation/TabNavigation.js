@@ -1,12 +1,17 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ComingSoonScreen from '../screens/ComingSoonScreen.js';
+<<<<<<< HEAD
+import { Image } from 'react-native';
+import ChatsScreen from '../screens/chats/ChatsScreen.js'
+=======
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import theme from '../themes/theme.js';
 import { SvgUri } from 'react-native-svg';
 import StyledText from '../components/StyledText.js';
 
+>>>>>>> 029986ad20c3e09253fd782c789f66129afd240b
 const Tab = createBottomTabNavigator();
 
 /* En esta parte va la logia de socket.io para las notificaciones */
@@ -75,7 +80,7 @@ const TabNavigation = () => {
       />
       <Tab.Screen
         name='Chat'
-        component={ComingSoonScreen}
+        component={ChatsScreen}
         options={{
           tabBarIcon: ({ focused }) => {
             return (

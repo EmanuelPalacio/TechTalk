@@ -1,24 +1,18 @@
 import { Schema, model, Types } from 'mongoose';
 
 const Message = new Schema({
-  conversation: {
-    type: Types.ObjectId,
-    ref: 'Conversation',
-    immutable: true,
+  conversationId: {
+    type: String,
   },
   sender: {
-    type: Types.ObjectId,
-    ref: 'User',
-    immutable: true,
+    type: String,
   },
   text: {
     type: String,
   },
-  createdAt: {
-    type: Date,
-    required: true,
-  },
-});
+},
+{ timestamps: true }
+);
 
 const MessageSchema = model('Message', Message);
 export default MessageSchema;
