@@ -6,15 +6,15 @@ import { size } from "lodash";
 import { Chat } from "../../api";
 import { useAuth } from "../../hooks";
 import { LoadingScreen } from "../../components/Shared";
-import { ListChat, Search } from "../../components/Chat";
+//import { ListChat, Search } from "../../components/Chat";
 import { screens } from "../../utils";
-import ChatListItem from "../../components/ChatListItem/index.js";
+//import ChatListItem from "../../components/ChatListItem/index.js";
 
 const chatController = new Chat();
 
 export function ChatsScreen({user}) {
   const { accessToken } = useAuth();
-  const navigation = useNavigation();
+  //const navigation = useNavigation();
   const [chats, setChats] = useState(null);
   const [chatsResult, setChatsResult] = useState(null);
   const [reload, setReload] = useState(false);
@@ -35,9 +35,9 @@ export function ChatsScreen({user}) {
   //   });
   // }, []);
 
-  useFocusEffect(
-    useCallback(() => {
-      (async () => {
+  
+    useEffect(() => {
+      const getChat = async () => {
         try {
           const response = await chatController.getAll(user.user_id);
           const result = response.sort((a, b) => {
@@ -51,9 +51,9 @@ export function ChatsScreen({user}) {
         } catch (error) {
           console.error(error);
         }
-      })();
-    }, [reload])
-  );
+        getChat();
+      }
+    }, [])
 
   const upTopChat = (chatId) => {
     const data = chatsResult;
@@ -66,7 +66,7 @@ export function ChatsScreen({user}) {
     setChats([...data]);
   };
 
-  if (!chatsResult) return <LoadingScreen />;
+  // if (!chatsResult) return <LoadingScreen />;
 
   return (
     <View>
@@ -78,9 +78,10 @@ export function ChatsScreen({user}) {
       /> */}
       <FlatList
         data={chats}
-        renderItem={({item}) => <ChatListItem chatData={item} />}
+        renderItem={({item}) => <Text>{item}</Text>}
         keyExtractor={item => item.id}
       />
     </View>
   );
 }
+//<ChatListItem chatData={item} />

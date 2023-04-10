@@ -2,7 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ComingSoonScreen from '../screens/ComingSoonScreen.js';
 import { Image } from 'react-native';
-
+import ChatsScreen from '../screens/chats/ChatsScreen.js'
 const Tab = createBottomTabNavigator();
 
 const TabNavigation = () => {
@@ -32,7 +32,7 @@ const TabNavigation = () => {
       />
       <Tab.Screen
         name='Chat'
-        component={ComingSoonScreen}
+        component={ChatsScreen}
         options={{
           tabBarIcon: ({ focused }) => {
             return (

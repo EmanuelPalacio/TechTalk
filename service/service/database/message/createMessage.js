@@ -1,4 +1,4 @@
-import Message from "../../models/MessageSchema.js"
+import Message from "../../../models/MessageSchema.js"
 
 
 export const createMessage = async (req, res) => {

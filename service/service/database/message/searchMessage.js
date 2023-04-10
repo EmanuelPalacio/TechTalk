@@ -1,4 +1,4 @@
-import Message from "../../models/MessageSchema.js"
+import Message from "../../../models/MessageSchema.js"
 
 /* get all messages of one user  */
 

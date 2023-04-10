@@ -3,9 +3,9 @@ import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import { Provider } from 'react-redux';
 import Navigation from './src/navigation';
 import { store } from './src/store/store';
-import { initSockets } from "../utils";
+// import { initSockets } from "../utils";
 
-initSockets();
+// initSockets();
 
 export default function App() {
   

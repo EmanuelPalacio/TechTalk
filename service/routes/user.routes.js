@@ -21,4 +21,5 @@ router.post('/create', validateCreateUser, userCreate);
 router.put('/:id', tokenValidator, validateAdminRol, userUpdate);
 router.delete('/:id', tokenValidator, validateAdminRol, deleteUser);
 
+
 export default router;

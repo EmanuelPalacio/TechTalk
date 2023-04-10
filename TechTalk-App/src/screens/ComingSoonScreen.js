@@ -1,7 +1,10 @@
 import { Image, StyleSheet, View } from 'react-native';
 import StyledText from '../components/StyledText.js';
 
+
 export default function ComingSoonScreen() {
+
+   
   return (
     <View style={styles.screen}>
       <StyledText fontSize='title' fontWeight='bold' color='third'>

@@ -1,4 +1,4 @@
-import Conversation from "../../models/ConversationSchema.js"
+import Conversation from "../../../models/ConversationSchema.js"
 
 
 export const createChat = async (req, res) => {

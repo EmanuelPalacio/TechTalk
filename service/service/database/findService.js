@@ -26,3 +26,22 @@ export const findReading = async (from, limit) => {
   ]);
   return { total, actvities };
 };
+
+export const findFriends  = async (req, res) => {
+  try {
+    const user = await UserSchema.findById(req.params.id);
+    const friends = await Promise.all(
+      user.friends_contacts.map((friendId) => {
+        return UserSchema.findById(friendId);
+      })
+    );
+    let friendList = [];
+    friends.map((friend) => {
+      const { _id, fullname, image_url } = friend;
+      friendList.push({ _id, fullname, image_url });
+    });
+    res.status(200).json(friendList)
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
