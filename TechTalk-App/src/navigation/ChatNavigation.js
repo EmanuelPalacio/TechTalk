@@ -7,6 +7,7 @@ import { SvgUri } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/native';
 import ContactScreen from '../screens/ContactScreen.js';
 import StyledText from '../components/StyledText.js';
+import ChatContact from '../screens/ChatContact.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -58,10 +59,10 @@ const ChatNavigation = () => {
         }}
       />
       <Stack.Screen
-        name='chat'
-        component={ComingSoonScreen}
+        name='Menssages'
+        component={ChatContact}
         options={{
-          title: 'Editar Perfil',
+          title: 'chat',
 
           headerLeft: () => (
             <TouchableOpacity onPress={() => navigation.navigate('Conctacts')}>

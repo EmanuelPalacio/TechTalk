@@ -1,30 +1,36 @@
 import { Image, StyleSheet, TouchableOpacity } from 'react-native';
 import StyledText from './StyledText.js';
 import theme from '../themes/theme.js';
+import { useNavigation } from '@react-navigation/native';
 
-const Contact = (user) => {
+const Contact = ({ contact, idConversation, onPress }) => {
+  const navigation = useNavigation();
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => navigation.navigate('Menssages', { idConversation })}
+    >
       <Image
         style={styles.image}
         source={{
-          uri: 'https://res.cloudinary.com/dshfifpgv/image/upload/v1681086310/Images%20proyect%20techTalk/TechTalkAssets/Defaut%20avatar%20profile/Avatar_bczsp0.jpg',
+          uri: contact.image.url,
         }}
       />
       <StyledText fontWeight='bold' fontSize='subheading'>
-        Emanuel Palacio
+        {contact.fullname}
       </StyledText>
     </TouchableOpacity>
   );
 };
 export default Contact;
+
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
     height: 100,
-    width: '95%',
+    width: '100%',
     marginVertical: 5,
     borderColor: theme.colors.secondaryTransparency,
     borderWidth: 1,
