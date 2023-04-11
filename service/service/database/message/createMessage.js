@@ -1,13 +1,11 @@
 import Message from "../../../models/MessageSchema.js"
 
 
-export const createMessage = async (req, res) => {
-  const newMessage = new Message(req.body);
+export const createMessage = async (message) => {
+  const newMessage = Message.create(message);
 
-  try {
+  
     const savedMessage = await newMessage.save();
-    res.status(200).json(savedMessage);
-  } catch (err) {
-    res.status(500).json(err);
-  }
+    return savedMessage;
+  
 };
