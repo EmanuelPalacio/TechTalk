@@ -1,4 +1,4 @@
-import express from 'express';
+import { json, urlencoded } from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import router from './routes/index.routes.js';
@@ -11,30 +11,38 @@ import {
   server,
 } from './config/index.js';
 
+import cookieParser from 'cookie-parser';
+import socketController from './controllers/socket/socketController.js';
+
 /* ------ SERVER CONFIG ------- */
 app.use(morgan('dev'));
+//middlewares
 app.use(
   cors({
-    origin: '',
+    origin: 'http://localhost:3000',
     methods: 'GET,POST,PUT,DELETE',
     credentials: true,
   }),
 );
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-/* app.use('/api', router); */
+app.use(cookieParser());
+app.use(json());
+app.use(urlencoded({ extended: true }));
+// Routes
+app.use('/api', router);
 
 server.listen(PORT, () => {
-  console.log('server iniciado');
+  console.log('server iniciado PORT || ', PORT);
 });
 
-/* ------ SOCKET IO ------- */
-io.on('connection', (socket) => {
-  console.log('se conecto el socket', socket.id);
-});
 /* ------ CLOUDINARY ------- */
 cloudinary.config();
-console.log(cloudinary, 'conexion exitosa de Cloudinary');
 
 /* ------ CONNECT MONGODB ATLAS ------- */
 confingMongoDB();
+
+app.get('/', (req, res) => {
+  res.send('Server is Running...');
+});
+
+/* ------ SOCKET IO ------- */
+io.on('connection', socketController);
