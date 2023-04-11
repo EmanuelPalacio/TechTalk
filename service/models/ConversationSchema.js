@@ -2,9 +2,9 @@ import { Schema, model, Types } from 'mongoose';
 
 const Conversation = new Schema(
   {
-    users: {
-      type: [{ type: Types.ObjectId, ref: 'User' }],
-    },
+    users: 
+       [{ type: Types.ObjectId, ref: 'User' }],
+    
     isPrivate: {
       type: Boolean,
       default: true,

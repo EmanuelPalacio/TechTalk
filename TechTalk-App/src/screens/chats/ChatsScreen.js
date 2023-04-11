@@ -4,8 +4,11 @@ import { useSelector } from 'react-redux';
 //import ChatListItem from '../../components/ChatListItem'
 import { socket } from '../../services/socketConnect.js';
 import { useIsFocused } from '@react-navigation/native';
+import ChatListItem from './ChatListItem.js';
 
 const ChatsScreen = () => {
+  // conecta socket
+  socket.connect()
   // traer el usuario logueado
   const { user } = useSelector((store) => store.auth.user);
   console.log('chatscreen user : ', user);
@@ -27,7 +30,7 @@ const ChatsScreen = () => {
 
   // buscar conversaciones
   useEffect(() => {
-    socket.connect();
+    
     socket.emit('getConv', user._id);
     socket.on('sendConv', (data) => {
       setConversations(data);
@@ -49,7 +52,7 @@ const ChatsScreen = () => {
     <View>
       <FlatList
         data={conversations}
-        renderItem={({ item }) => <Text>{item.users[0]}</Text>}
+        renderItem={({ item }) => <ChatListItem conversations={conversations} user={user}/>}
         keyExtractor={(item) => item._id}
       />
       {/* <ChatListItem id conversation/>  */}
