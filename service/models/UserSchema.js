@@ -27,7 +27,8 @@ const user = new Schema({
   image: {
     url: {
       type: String,
-      default: 'https://i.ibb.co/MBtjqXQ/no-avatar.gif',
+      default:
+        'https://res.cloudinary.com/dshfifpgv/image/upload/v1681086310/Images%20proyect%20techTalk/TechTalkAssets/Defaut%20avatar%20profile/Avatar_bczsp0.jpg',
     },
     id: {
       type: String,

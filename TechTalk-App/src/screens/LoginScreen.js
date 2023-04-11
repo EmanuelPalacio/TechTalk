@@ -17,6 +17,7 @@ import { fulfilled } from '../store/loading/LoadingSlice.js';
 import StyledLink from '../components/StyledLink.js';
 import { useNavigation } from '@react-navigation/native';
 import useDataCollection from '../hooks/useDataCollection.js';
+import { socket } from '../services/socketConnect.js';
 
 const LoginScreen = () => {
   const [value, collection] = useDataCollection({
@@ -35,8 +36,9 @@ const LoginScreen = () => {
       if (token) {
         dispatch(authorized());
         const user = await getUserInfo(id, token);
-        user && dispatch(fulfilled());
         dispatch(logIn({ user, token }));
+        user && dispatch(fulfilled());
+        user && socket.connect();
       }
     } catch (error) {
       console.error('hola', error);

@@ -2,10 +2,12 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ComingSoonScreen from '../screens/ComingSoonScreen.js';
 import theme from '../themes/theme.js';
-import { TouchableOpacity } from 'react-native';
+import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { SvgUri } from 'react-native-svg';
 import { useNavigation } from '@react-navigation/native';
-import ProfileScreen from '../screens/ProfileScreen.js';
+import ContactScreen from '../screens/ContactScreen.js';
+import StyledText from '../components/StyledText.js';
+import ChatContact from '../screens/ChatContact.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -13,7 +15,7 @@ const ChatNavigation = () => {
   const navigation = useNavigation();
   return (
     <Stack.Navigator
-      initialRouteName='Profile'
+      initialRouteName='Conctacts'
       screenOptions={{
         headerTitleAlign: 'center',
         headerTintColor: theme.colors.primaryText,
@@ -35,7 +37,7 @@ const ChatNavigation = () => {
     >
       <Stack.Screen
         name='Conctacts'
-        component={ProfileScreen}
+        component={ContactScreen}
         options={{
           title: 'Contactos',
           headerLeft: () => (
@@ -44,17 +46,23 @@ const ChatNavigation = () => {
             </TouchableOpacity>
           ),
           headerRight: () => (
-            <TouchableOpacity onPress={() => navigation.navigate('Settings')}>
-              <SvgUri uri='https://res.cloudinary.com/dshfifpgv/image/upload/v1681069436/Images%20proyect%20techTalk/TechTalkAssets/TabIcons/Settings_cpou7z.svg' />
+            <TouchableOpacity
+              style={styles.containerNotification}
+              /* onPress={() => navigation.goBack()} */
+            >
+              <SvgUri uri='https://res.cloudinary.com/dshfifpgv/image/upload/v1680921806/Images%20proyect%20techTalk/TechTalkAssets/TabIcons/Notificaciones_aqqttv.svg' />
+              <View style={styles.notificationCircle}>
+                <StyledText color='secondary'>3</StyledText>
+              </View>
             </TouchableOpacity>
           ),
         }}
       />
       <Stack.Screen
-        name='chat'
-        component={ComingSoonScreen}
+        name='Menssages'
+        component={ChatContact}
         options={{
-          title: 'Editar Perfil',
+          title: 'chat',
 
           headerLeft: () => (
             <TouchableOpacity onPress={() => navigation.navigate('Conctacts')}>
@@ -68,3 +76,20 @@ const ChatNavigation = () => {
 };
 
 export default ChatNavigation;
+
+const styles = StyleSheet.create({
+  containerNotification: {
+    position: 'relative',
+  },
+  notificationCircle: {
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    minWidth: 24,
+    minHeight: 24,
+    borderRadius: 12,
+    backgroundColor: theme.colors.third,
+    top: 15,
+    left: 20,
+  },
+});
