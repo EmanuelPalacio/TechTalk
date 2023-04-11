@@ -4,6 +4,10 @@ export const findUser = async (email) => {
   return await UserSchema.findOne({ email });
 };
 
+export const searchUser = async (id) => {
+  return await UserSchema.findById( id );
+};
+
 export const findUserById = async (id) => {
   const user = await UserSchema.findById(id);
   return user.populate('friends_contacts', 'fullname image phone');

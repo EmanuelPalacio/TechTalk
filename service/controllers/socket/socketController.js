@@ -1,4 +1,5 @@
-import { searchChat } from "../../service/database/index.js";
+import { searchChat } from "../../service/database/chat/searchChat.js";
+import { searchUser } from "../../service/database/findService.js"
 import {io} from '../../config/index.js';
 
 const socketController = (socket) => {
@@ -40,7 +41,14 @@ const socketController = (socket) => {
         console.log("Socket Conversations return: ", conv)
         io.emit("sendConv", conv);
       });
-    
+
+      //busca info del otro user de la conversation
+      socket.on("getUser", async (friendId) => {
+        const otherUser = await searchUser(friendId)
+        console.log("Socket Other user return: ", otherUser)
+        io.emit("sendUser", otherUser);
+      });
+
       //when disconnect
       socket.on("disconnect", () => {
         console.log("a user disconnected!");
