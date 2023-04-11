@@ -11,7 +11,7 @@ export default async function getUserInfo(id, token) {
         },
       },
     );
-    return { user: data.user };
+    return data.user;
   } catch (error) {
     throw new Error(error);
   }
