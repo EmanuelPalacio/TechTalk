@@ -43,9 +43,11 @@ const socketController = (socket) => {
       });
 
       //busca mensajes x id conversation
-      socket.on("getMessages", async (convId) => {
-        const messages = await searchMessage(convId)
-        console.log("Socket Message return: ", messages)
+      socket.on("getMessages", async (idConversation) => {
+        console.log("en socket idConversation: ", idConversation)
+        
+        const messages = await searchMessage(idConversation)
+        console.log("Socket Messages return: ", messages)
         io.emit("sendMessages", messages);
       });
 
