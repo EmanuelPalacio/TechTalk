@@ -1,33 +1,32 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text, StyleSheet, Image } from 'react-native'
+import React, {useState, useEffect} from 'react'
 import { useSelector } from 'react-redux'
 
 
 const ChatListItem = ({ conversations, user }) => {
     const [otherUser, setOtherUser] = useState(null)
 
-    //const { user } = useSelector(store => store.auth.user)
-    console.log("chatscreen user : ", user)
     
-    useEffect(() => {
-        const friendId = conversations.users.find((m) => m !== user._id);
+    console.log("Conversations: ", conversations)
     
-        const getUser = async () => {
-          try {
-            const res = await axios("/users?userId=" + friendId);
-            setOtherUser(res.data);
-          } catch (err) {
-            console.log(err);
-          }
-        };
-        getUser();
-      }, [currentUser, conversation]);
+    
+    
 
   return (
     <View>
-      <Text>ChatListItem</Text>
+    
+
+        <Text>{conversations[0].users[0].fullname}</Text>
+
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+    tinyLogo: {
+      width: 25,
+      height: 25,
+    }
+  });
 
 export default ChatListItem
