@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "TechTalk",
-    "slug": "TechTalk",
+    "slug": "techtalk",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -11,7 +11,10 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*", "assets/fonts/*"],
+    "assetBundlePatterns": [
+      "**/*",
+      "assets/fonts/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -19,7 +22,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.techtalkteamdev.techtalk"
     },
     "web": {
       "favicon": "./assets/favicon.png"
