@@ -1,5 +1,4 @@
 import StyledText from './StyledText.js';
-import { Svg, Path, Defs, ClipPath } from 'react-native-svg';
 import { StyleSheet, View } from 'react-native';
 import theme from '../themes/theme.js';
 import { useSelector } from 'react-redux';
@@ -31,4 +30,4 @@ const styles = StyleSheet.create({
     minHeight: 50,
     padding: 10,
   },
-});
+}); 
