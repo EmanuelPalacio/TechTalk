@@ -14,12 +14,19 @@ const ChatContact = ({ route }) => {
   const [value, collection, resetValues] = useDataCollection({
     text: '',
   });
-  const sendMenssage = () => {
-    resetValues();
-  };
   const navigation = useNavigation();
   const { idConversation, contactName } = route.params;
   const [messages, setMessages] = useState(null);
+  const { user } = useSelector((store) => store.auth);
+
+  const sendMenssage = () => {
+    socket.emit("sendMessage", {
+      senderId: user._id,
+      text: value,
+      idConversation
+    });
+    resetValues();
+  };
 
   useEffect(() => {
     navigation.setOptions({
