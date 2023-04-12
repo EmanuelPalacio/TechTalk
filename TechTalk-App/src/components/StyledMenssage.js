@@ -1,12 +1,22 @@
 import StyledText from './StyledText.js';
-import { Svg, Path, Defs, ClipPath } from 'react-native-svg';
 import { StyleSheet, View } from 'react-native';
 import theme from '../themes/theme.js';
+import { useSelector } from 'react-redux';
 
-const StyledMenssage = () => {
+const StyledMenssage = ({ data }) => {
+  const { user } = useSelector((store) => store.auth);
   return (
-    <View style={{ ...styles.container, alignSelf: 'flex-end' }}>
-      <StyledText>hola</StyledText>
+    <View
+      style={{
+        ...styles.container,
+        backgroundColor:
+          data.sender === user._id
+            ? theme.colors.secondaryTransparency
+            : theme.colors.third,
+        alignSelf: data.sender === user._id ? 'flex-end' : 'flex-start',
+      }}
+    >
+      <StyledText>{data.text}</StyledText>
     </View>
   );
 };
@@ -18,7 +28,5 @@ const styles = StyleSheet.create({
     width: '70%',
     minHeight: 50,
     padding: 10,
-    marginHorizontal: 10,
-    backgroundColor: theme.colors.third,
   },
 });

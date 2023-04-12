@@ -1,62 +1,50 @@
-import {io} from '../../config/index.js';
-import { searchChat } from "../../service/database/chat/searchChat.js";
-import { searchMessage } from "../../service/database/message/searchMessage.js";
+import { searchChat } from '../../service/database/chat/searchChat.js';
+import { createMessage } from '../../service/database/message/createMessage.js';
+import { searchMessage } from '../../service/database/message/searchMessage.js';
+import { io } from '../../config/index.js';
 
-const socketController = (socket) => {
-    console.log('se conecto el socket', socket.id);
-    
-    let users = [];
+const socketController = async (socket) => {
+  const userId = socket.handshake.query.userId;
+  console.log('se conecto el socket', userId);
 
-    const addUser = (userId, socketId) => {
-      !users.some((user) => user.userId === userId) &&
-        users.push({ userId, socketId });
-    };
-    
-    const removeUser = (socketId) => {
-      users = users.filter((user) => user.socketId !== socketId);
-    };
-    
-    const getUser = (userId) => {
-      return users.find((user) => user.userId === userId);
-    };
-    
-      //take userId and socketId from user
-      socket.on("addUser", (userId) => {
-        addUser(userId, socket.id);
-        io.emit("getUsers", users);
-      });
-    
-      //send and get message
-      socket.on("sendMessage", ({ senderId, receiverId, text }) => {
-        const user = getUser(receiverId);
-        io.to(user.socketId).emit("getMessage", {
-          senderId,
-          text,
-        });
-      });
-    
-      //busca conversation x id user y envia conversations
-      socket.on("getConv", async (userId) => {
-        const conv = await searchChat(userId)
-        console.log("Socket Conversations return: ", conv)
-        io.emit("sendConv", conv);
-      });
+  const ids = await searchChat(userId);
+  if (ids.length !== 0) {
+    ids.forEach((item) => {
+      socket.join(item._id.toString());
+    });
+  }
 
-      //busca mensajes x id conversation
-      socket.on("getMessages", async (convId) => {
-        const messages = await searchMessage(convId)
-        console.log("Socket Message return: ", messages)
-        io.emit("sendMessages", messages);
-      });
+  //send and get message
+  socket.on('sendMessage', async ({ senderId, text, idConversation }) => {
+    await createMessage({
+      conversationId: idConversation,
+      sender: senderId,
+      text,
+    });
+    console.log(idConversation);
+    io.in(idConversation).emit('getMessage', {
+      sender: senderId,
+      text,
+    });
+  });
 
-      //when disconnect
-      socket.on("disconnect", () => {
-        console.log("a user disconnected!");
-        removeUser(socket.id);
-        io.emit("getUsers", users);
-      });
+  //busca conversation x id user y envia conversations
+  socket.on('getConv', async (userId) => {
+    const conv = await searchChat(userId);
 
-}
+    socket.emit('sendConv', conv);
+  });
 
+  //busca mensajes x id conversation
+  socket.on('getMessages', async (idConversation) => {
+    const messages = await searchMessage(idConversation);
 
-export default socketController
+    socket.emit('sendMessages', messages);
+  });
+
+  //when disconnect
+  socket.on('disconnect', () => {
+    console.log('a user disconnected!');
+  });
+};
+export default socketController;

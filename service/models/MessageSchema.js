@@ -1,8 +1,10 @@
 import { Schema, model, Types } from 'mongoose';
 
 const Message = new Schema({
-  conversation: {
-    type: String,
+  conversationId: {
+    type: Types.ObjectId,
+    ref: 'Conversation',
+    immutable: true,
   },
   sender: {
     type: Types.ObjectId,

@@ -1,6 +1,5 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import ComingSoonScreen from '../screens/ComingSoonScreen.js';
 import theme from '../themes/theme.js';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';
 import { SvgUri } from 'react-native-svg';
@@ -58,19 +57,7 @@ const ChatNavigation = () => {
           ),
         }}
       />
-      <Stack.Screen
-        name='Menssages'
-        component={ChatContact}
-        options={{
-          title: 'chat',
-
-          headerLeft: () => (
-            <TouchableOpacity onPress={() => navigation.navigate('Conctacts')}>
-              <SvgUri uri='https://res.cloudinary.com/dshfifpgv/image/upload/v1680910700/Images%20proyect%20techTalk/TechTalkAssets/TabIcons/Volver_ilvo2t.svg' />
-            </TouchableOpacity>
-          ),
-        }}
-      />
+      <Stack.Screen name='Menssages' component={ChatContact} />
     </Stack.Navigator>
   );
 };
