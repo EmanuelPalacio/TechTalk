@@ -9,9 +9,9 @@
     "splash": {
       "image": "./assets/Logo.png",
       "resizeMode": "contain",
-      "imageResizeMode": "contain",
+      "backgroundColor": "#ffffff",
       "imageWidth": 200,
-      "backgroundColor": "#ffffff"
+      "imageHeight": "auto"
     },
     "assetBundlePatterns": ["**/*", "assets/fonts/*"],
     "ios": {
