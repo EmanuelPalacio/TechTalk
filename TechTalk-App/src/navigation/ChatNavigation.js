@@ -7,13 +7,10 @@ import { useNavigation } from '@react-navigation/native';
 import ContactScreen from '../screens/ContactScreen.js';
 import StyledText from '../components/StyledText.js';
 import ChatContact from '../screens/ChatContact.js';
-import { useSelector } from 'react-redux';
 
 const Stack = createNativeStackNavigator();
 
 const ChatNavigation = () => {
-  const { conversation } = useSelector((store) => store.conversation);
-  console.warn(conversation);
   const navigation = useNavigation();
   return (
     <Stack.Navigator

@@ -3,7 +3,7 @@ import StyledText from './StyledText.js';
 import theme from '../themes/theme.js';
 import { useNavigation } from '@react-navigation/native';
 
-const Contact = ({ contact, idConversation, onPress }) => {
+const Contact = ({ contact, idConversation }) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
