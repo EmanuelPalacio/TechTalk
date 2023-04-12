@@ -36,7 +36,10 @@ const TabNavigation = () => {
           paddingRight: 20,
         },
         headerLeft: () => (
-          <TouchableOpacity onPress={() => navigation.goBack()}>
+          <TouchableOpacity
+            onPress={() => navigation.goBack()}
+            hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+          >
             <SvgUri uri='https://res.cloudinary.com/dshfifpgv/image/upload/v1680910700/Images%20proyect%20techTalk/TechTalkAssets/TabIcons/Volver_ilvo2t.svg' />
           </TouchableOpacity>
         ),

@@ -3,12 +3,17 @@ import StyledText from './StyledText.js';
 import theme from '../themes/theme.js';
 import { useNavigation } from '@react-navigation/native';
 
-const Contact = ({ contact, idConversation, onPress }) => {
+const Contact = ({ contact, idConversation }) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => navigation.navigate('Menssages', { idConversation })}
+      onPress={() =>
+        navigation.navigate('Menssages', {
+          idConversation,
+          contactName: contact.fullname,
+        })
+      }
     >
       <Image
         style={styles.image}

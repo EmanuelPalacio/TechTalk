@@ -4,19 +4,21 @@ import { StyleSheet, View } from 'react-native';
 import theme from '../themes/theme.js';
 import { useSelector } from 'react-redux';
 
-const StyledMenssage = ({data}) => {
+const StyledMenssage = ({ data }) => {
   const { user } = useSelector((store) => store.auth);
-
-  const isMyMessage = () => {
-    return data.sender._id === user._id
-  }
-
+  console.log(data);
   return (
-    <View style={{ ...styles.container,
-      backgroundColor: isMyMessage ? theme.colors.secondaryTransparency : theme.colors.third,
-      marginLeft: isMyMessage ? 50 : 0,
-      marginRight: isMyMessage ? 0 :50 }}>
-      <StyledText>{data.texto}</StyledText>
+    <View
+      style={{
+        ...styles.container,
+        backgroundColor:
+          data.sender === user._id
+            ? theme.colors.secondaryTransparency
+            : theme.colors.third,
+        alignSelf: data.sender === user._id ? 'flex-end' : 'flex-start',
+      }}
+    >
+      <StyledText>{data.text}</StyledText>
     </View>
   );
 };
@@ -28,7 +30,5 @@ const styles = StyleSheet.create({
     width: '70%',
     minHeight: 50,
     padding: 10,
-    marginHorizontal: 10,
-    
   },
 });

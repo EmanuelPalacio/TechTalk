@@ -6,34 +6,49 @@ import { useEffect, useState } from 'react';
 import { socket } from '../services/socketConnect.js';
 import StyledText from '../components/StyledText.js';
 import StyledMenssage from '../components/StyledMenssage.js';
+import { useNavigation } from '@react-navigation/core';
+import StyledInput from '../components/StyledInput.js';
+import useDataCollection from '../hooks/useDataCollection.js';
 
 const ChatContact = ({ route }) => {
-  const { idConversation } = route.params;
-  const [ messages, setMessages ] = useState(null)
+  const [value, collection, resetValues] = useDataCollection({
+    text: '',
+  });
+  const sendMenssage = () => {
+    resetValues();
+  };
+  const navigation = useNavigation();
+  const { idConversation, contactName } = route.params;
+  const [messages, setMessages] = useState(null);
 
-console.log("idConversation : ", idConversation)
-  
-// busco los mensajes de la conversation
   useEffect(() => {
-    console.log("idConversation en useEffect : ", idConversation)
+    navigation.setOptions({
+      headerTitle: () => (
+        <StyledText fontSize='subheading' fontWeight='bold'>
+          {contactName}
+        </StyledText>
+      ),
+    });
     socket.emit('getMessages', idConversation);
     socket.on('sendMessages', (data) => {
-      setMessages(data)
-      console.log("Messages en useEffect : ", messages)
-      });
+      setMessages(data);
+    });
   }, []);
 
-  // FlatList para mostrar mensaje
   return (
-    <View style={styles.root}>
-      <FlatList 
+    <View style={styles.container}>
+      <FlatList
+        contentContainerStyle={styles.list}
         data={messages}
-        renderItem={({ item }) => (
-          <StyledMenssage
-            data={item}
-          />
-        )}
+        renderItem={({ item }) => <StyledMenssage data={item} />}
         keyExtractor={(item) => item._id}
+      />
+      <StyledInput
+        action={sendMenssage}
+        onChangeText={(text) => collection(text, 'text')}
+        value={value.text}
+        placeholder='Ingrense su mensaje'
+        secondUrl='https://res.cloudinary.com/dshfifpgv/image/upload/v1681262699/Images%20proyect%20techTalk/TechTalkAssets/icons/sendMenssage_ngdosu.svg'
       />
     </View>
   );
@@ -41,15 +56,18 @@ console.log("idConversation : ", idConversation)
 export default ChatContact;
 
 const styles = StyleSheet.create({
-  root: {
-    flexDirection: 'column',
-    alignItems: 'flex-start',
+  container: {
     justifyContent: 'center',
+    alignItems: 'center',
     width: '100%',
     minHeight: '100%',
     backgroundColor: theme.colors.primary,
+    padding: 10,
   },
   list: {
-    width: '95%',
+    minWidth: '100%',
+    manWidth: '100%',
+    Height: '100%',
+    gap: 10,
   },
 });
