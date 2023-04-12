@@ -17,12 +17,14 @@
       }
     },
     "production": {
+      "android": {
+        "buildType": "apk"
+      },
       "ios": {
         "resourceClass": "m-medium"
       }
     },
     "androidapk": {
-      "developmentClient": false,
       "android": {
         "buildType": "apk"
       }
