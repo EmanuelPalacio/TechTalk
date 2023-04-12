@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 
 const StyledMenssage = ({ data }) => {
   const { user } = useSelector((store) => store.auth);
-  console.log(data);
   return (
     <View
       style={{
@@ -30,4 +29,4 @@ const styles = StyleSheet.create({
     minHeight: 50,
     padding: 10,
   },
-}); 
+});

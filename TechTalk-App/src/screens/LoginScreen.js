@@ -38,7 +38,7 @@ const LoginScreen = () => {
         const user = await getUserInfo(id, token);
         dispatch(logIn({ user, token }));
         user && dispatch(fulfilled());
-        user && socket.connect();
+        user && ((socket.io.opts.query = { userId: id }), socket.connect());
       }
     } catch (error) {
       console.error('hola', error);

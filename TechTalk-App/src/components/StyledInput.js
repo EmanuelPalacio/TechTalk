@@ -33,9 +33,7 @@ export default function StyledInput({
       />
       <TouchableOpacity
         hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-        onPress={() => {
-          action();
-        }}
+        onPress={() => action()}
       >
         <SvgUri
           width='50'

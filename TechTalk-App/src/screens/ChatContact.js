@@ -1,7 +1,6 @@
-import { FlatList, ScrollView, StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import theme from '../themes/theme.js';
-import { useDispatch, useSelector } from 'react-redux';
-import Contact from '../components/Contact.js';
+import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { socket } from '../services/socketConnect.js';
 import StyledText from '../components/StyledText.js';
@@ -16,14 +15,14 @@ const ChatContact = ({ route }) => {
   });
   const navigation = useNavigation();
   const { idConversation, contactName } = route.params;
-  const [messages, setMessages] = useState(null);
+  const [messages, setMessages] = useState([]);
   const { user } = useSelector((store) => store.auth);
 
   const sendMenssage = () => {
-    socket.emit("sendMessage", {
+    socket.emit('sendMessage', {
       senderId: user._id,
-      text: value,
-      idConversation
+      text: value.text,
+      idConversation,
     });
     resetValues();
   };
@@ -40,6 +39,10 @@ const ChatContact = ({ route }) => {
     socket.on('sendMessages', (data) => {
       setMessages(data);
     });
+    socket.on('getMessage', (newMessage) => {
+      setMessages((prevMessages) => [...prevMessages, newMessage]);
+      console.log(newMessage);
+    });
   }, []);
 
   return (
@@ -47,16 +50,19 @@ const ChatContact = ({ route }) => {
       <FlatList
         contentContainerStyle={styles.list}
         data={messages}
-        renderItem={({ item }) => <StyledMenssage data={item} />}
-        keyExtractor={(item) => item._id}
+        renderItem={({ item, index }) => (
+          <StyledMenssage data={item} key={index} />
+        )}
       />
-      <StyledInput
-        action={sendMenssage}
-        onChangeText={(text) => collection(text, 'text')}
-        value={value.text}
-        placeholder='Ingrense su mensaje'
-        secondUrl='https://res.cloudinary.com/dshfifpgv/image/upload/v1681262699/Images%20proyect%20techTalk/TechTalkAssets/icons/sendMenssage_ngdosu.svg'
-      />
+      <View style={styles.input}>
+        <StyledInput
+          action={sendMenssage}
+          onChangeText={(text) => collection(text, 'text')}
+          value={value.text}
+          placeholder='Ingrense su mensaje'
+          secondUrl='https://res.cloudinary.com/dshfifpgv/image/upload/v1681262699/Images%20proyect%20techTalk/TechTalkAssets/icons/sendMenssage_ngdosu.svg'
+        />
+      </View>
     </View>
   );
 };
@@ -67,14 +73,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
-    minHeight: '100%',
+    height: '100%',
     backgroundColor: theme.colors.primary,
     padding: 10,
   },
   list: {
     minWidth: '100%',
     manWidth: '100%',
-    Height: '100%',
+    minheight: '100%',
     gap: 10,
+  },
+  input: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '95%',
+    marginVertical: 15,
   },
 });
