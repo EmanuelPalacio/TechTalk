@@ -8,7 +8,12 @@ const Contact = ({ contact, idConversation, onPress }) => {
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => navigation.navigate('Menssages', { idConversation })}
+      onPress={() =>
+        navigation.navigate('Menssages', {
+          idConversation,
+          contactName: contact.fullname,
+        })
+      }
     >
       <Image
         style={styles.image}

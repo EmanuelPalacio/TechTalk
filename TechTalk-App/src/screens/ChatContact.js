@@ -6,50 +6,49 @@ import { useEffect, useState } from 'react';
 import { socket } from '../services/socketConnect.js';
 import StyledText from '../components/StyledText.js';
 import StyledMenssage from '../components/StyledMenssage.js';
+import { useNavigation } from '@react-navigation/core';
+import { SvgUri } from 'react-native-svg';
 
 const ChatContact = ({ route }) => {
-  const { idConversation } = route.params;
-  const [ messages, setMessages ] = useState(null)
+  const navigation = useNavigation();
+  const { idConversation, contactName } = route.params;
+  const [messages, setMessages] = useState(null);
 
-console.log("idConversation : ", idConversation)
-  
-// busco los mensajes de la conversation
+  console.log('idConversation : ', idConversation);
+
+  // busco los mensajes de la conversation
   useEffect(() => {
-    console.log("idConversation en useEffect : ", idConversation)
+    navigation.setOptions({
+      headerTitle: () => (
+        <StyledText fontSize='subheading' fontWeight='bold'>
+          {contactName}
+        </StyledText>
+      ),
+    });
     socket.emit('getMessages', idConversation);
     socket.on('sendMessages', (data) => {
-      setMessages(data)
-      console.log("Messages en useEffect : ", messages)
-      });
+      setMessages(data);
+    });
   }, []);
 
   // FlatList para mostrar mensaje
   return (
-    <View style={styles.root}>
-      <FlatList 
-        data={messages}
-        renderItem={({ item }) => (
-          <StyledMenssage
-            data={item}
-          />
-        )}
-        keyExtractor={(item) => item._id}
-      />
-    </View>
+    <FlatList
+      contentContainerStyle={styles.list}
+      data={messages}
+      renderItem={({ item }) => <StyledMenssage data={item} />}
+      keyExtractor={(item) => item._id}
+    />
   );
 };
 export default ChatContact;
 
 const styles = StyleSheet.create({
-  root: {
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    justifyContent: 'center',
+  list: {
+    padding: 10,
     width: '100%',
     minHeight: '100%',
     backgroundColor: theme.colors.primary,
-  },
-  list: {
-    width: '95%',
+    gap: 10,
   },
 });
