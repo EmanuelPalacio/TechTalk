@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "TechTalk-App",
-    "slug": "TechTalk-App",
+    "slug": "techtalk",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -11,7 +11,10 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*", "assets/fonts/*"],
+    "assetBundlePatterns": [
+      "**/*",
+      "assets/fonts/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -19,10 +22,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.devback55.techtalk"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "06a67cb2-bd16-4eaf-a98d-90c4c0d83af7"
+      }
+    },
+    "owner": "devback55"
   }
 }
