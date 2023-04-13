@@ -6,16 +6,19 @@
     "orientation": "portrait",
     "icon": "./assets/Logo.png",
     "userInterfaceStyle": "light",
+    "backgroundColor": "#ffffff",
     "splash": {
-      "image": "./assets/Logo.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff",
-      "imageWidth": 200,
-      "imageHeight": "auto"
+      "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*", "assets/fonts/*"],
+    "assetBundlePatterns": [
+      "**/*",
+      "assets/fonts/*"
+    ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.techtalkteamdev.techtalk"
     },
     "android": {
       "adaptiveIcon": {

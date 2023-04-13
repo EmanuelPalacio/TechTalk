@@ -8,6 +8,7 @@ import { SvgUri } from 'react-native-svg';
 import StyledText from '../components/StyledText.js';
 import UserProfileNavigation from './UserProfileNavigation.js';
 import ChatNavigation from './ChatNavigation.js';
+import ActivitiesNavegation from './ActivitiesNavegation.js';
 
 const Tab = createBottomTabNavigator();
 
@@ -103,7 +104,7 @@ const TabNavigation = () => {
       />
       <Tab.Screen
         name='Aprende'
-        component={ComingSoonScreen}
+        component={ActivitiesNavegation}
         options={{
           tabBarIcon: ({ focused }) => {
             return (
