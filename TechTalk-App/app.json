@@ -12,7 +12,10 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*", "assets/fonts/*"],
+    "assetBundlePatterns": [
+      "**/*",
+      "assets/fonts/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.techtalkteamdev.techtalk"
@@ -31,7 +34,6 @@
       "eas": {
         "projectId": "30bed0c0-a66d-4890-968a-8bc83411fc22"
       }
-    },
-    "owner": "techtalkteamdev"
+    }
   }
 }

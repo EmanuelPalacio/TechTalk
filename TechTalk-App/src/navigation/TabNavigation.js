@@ -1,6 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import ComingSoonScreen from '../screens/ComingSoonScreen.js';
+import FeedScreen from '../screens/FeedScreen.js';
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import theme from '../themes/theme.js';
@@ -58,8 +59,8 @@ const TabNavigation = () => {
       }}
     >
       <Tab.Screen
-        name='Conectar'
-        component={ComingSoonScreen}
+        name='Comunidad de Aprendizaje'
+        component={FeedScreen}
         options={{
           tabBarIcon: ({ focused }) => {
             return (
