@@ -1,18 +1,57 @@
-import { StyleSheet, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 import theme from '../themes/theme.js';
+import CardActivity from '../components/CardActivity.js';
+import { useNavigation } from '@react-navigation/native';
 
 const ActivitiesScreen = () => {
-  return <View style={styles.container}></View>;
+  const navigation = useNavigation();
+  return (
+    <ScrollView style={styles.containerScroll}>
+      <View style={styles.container}>
+        <CardActivity
+          nav={() =>
+            navigation.navigate('selectedActivity', { activity: 'Reading' })
+          }
+          name='Reading'
+          url='https://res.cloudinary.com/dshfifpgv/image/upload/v1681500368/Images%20proyect%20techTalk/TechTalkAssets/activities/Recurso_2reading-azul_3_ossngo.png'
+        />
+        <CardActivity
+          nav={() =>
+            navigation.navigate('selectedActivity', { activity: 'Listeinig' })
+          }
+          name='Listeinig'
+          url='https://res.cloudinary.com/dshfifpgv/image/upload/v1681500368/Images%20proyect%20techTalk/TechTalkAssets/activities/Recurso_2listeinig-azul_4_hpmsbl.png'
+        />
+        <CardActivity
+          nav={() =>
+            navigation.navigate('selectedActivity', { activity: 'Writing' })
+          }
+          name='Writing'
+          url='https://res.cloudinary.com/dshfifpgv/image/upload/v1681500368/Images%20proyect%20techTalk/TechTalkAssets/activities/Recurso_1writing-azul_3_j8lfjc.png'
+        />
+        <CardActivity
+          nav={() =>
+            navigation.navigate('selectedActivity', { activity: 'Speaking' })
+          }
+          name='Speaking'
+          url='https://res.cloudinary.com/dshfifpgv/image/upload/v1681500368/Images%20proyect%20techTalk/TechTalkAssets/activities/Recurso_2speaking-azul_3_pqhkfd.png'
+        />
+      </View>
+    </ScrollView>
+  );
 };
 export default ActivitiesScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
+  containerScroll: {
     minHeight: '100%',
+    width: '100%',
     backgroundColor: theme.colors.primary,
     padding: 10,
+  },
+  container: {
+    flexGrow: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
   },
 });

@@ -13,7 +13,7 @@ const ActivitiesNavegation = () => {
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name='Activities' component={ActivitiesScreen} />
-      <Stack.Screen name='Reading' component={ComingSoonScreen} />
+      <Stack.Screen name='selectedActivity' component={ComingSoonScreen} />
     </Stack.Navigator>
   );
 };
