@@ -1,15 +1,18 @@
 import React from 'react'
-import { View, Text, FlatList, StyleSheet } from 'react-native'
+import { View, FlatList, StyleSheet } from 'react-native'
 import theme from '../themes/theme.js';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import getUsers from '../services/getUsers.js';
 import FeedItem from '../components/FeedItem.js';
-
+import { socket } from '../services/socketConnect.js';
+import { updateConversation } from '../store/conversation/conversation.js';
 
 const FeedScreen = () => {
     const { user } = useSelector((store) => store.auth);
+    const { conversation } = useSelector((store) => store.conversation);
     const [ users, setUsers ] = useState(null);
+    const dispatch = useDispatch();
 
 // traer todos los usuarios
     useEffect(() => {
@@ -18,7 +21,21 @@ const FeedScreen = () => {
         setUsers(data)
         }
         request()
-    }, [user])
+    // busca las conversations del user logueado
+    socket.emit('getConv', user._id);
+    socket.on('sendConv', (data) => {
+      const contacAndConversation = data.map((item) => {
+        const contact = item.users.find((elem) => elem._id !== user._id);
+        return {
+          idConversation: item._id,
+          contact,
+        };
+      });
+      dispatch(updateConversation(contacAndConversation));
+      console.log("Conversation dsp update: ", conversation)
+    }); 
+
+    }, [dispatch, user])
 
   return (
     <View style={styles.container}>

@@ -1,19 +1,45 @@
-import { Image, StyleSheet, TouchableOpacity, View, Text } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import StyledText from './StyledText.js';
 import theme from '../themes/theme.js';
 import { useNavigation } from '@react-navigation/native';
+import { useSelector, useDispatch } from 'react-redux';
+import { socket } from '../services/socketConnect.js';
+import { addConversation } from '../store/conversation/conversation.js';
+
 
 const FeedItem = ({conectUser}) => {
     const navigation = useNavigation();
+    const { user } = useSelector((store) => store.auth);
+    
+    const dispatch = useDispatch();
+
+  const createConv = () => {
+    //busco si tengo conversation con contacto seleccionado
+       socket.emit('getConvTwoUsers', user._id, conectUser._id);
+       socket.on('sendConvTwoUsers', (data) => {
+       console.log("socket recibe sendConvTwoUsers data: ", data)
+       
+       //const contact = data.users.find((elem) => elem._id === conectUser._id);
+      //  console.log("Contact : ", contact)
+      //  const contacAndConversation = {
+      //      idConversation: data._id,
+      //      contact
+      //    };
+       const idConversation = data._id
+       
+      //  dispatch(addConversation(contacAndConversation));
+      //  const {idConversation} = contacAndConversation
+      navigation.navigate('Menssages', {
+          idConversation: idConversation,
+          contactName: conectUser.fullname 
+      })
+    })
+  }
+
     return (
       <TouchableOpacity
         style={styles.container}
-        // onPress={() =>
-        //   navigation.navigate('Menssages', {
-        //     idConversation,
-        //     contactName: conectUser.fullname,
-        //   })
-        // }
+          onPress={() => createConv()}
       >
        
         <Image
@@ -50,7 +76,7 @@ const FeedItem = ({conectUser}) => {
 
       </TouchableOpacity>
     );
-  };
+};
 export default FeedItem;
 
 const styles = StyleSheet.create({

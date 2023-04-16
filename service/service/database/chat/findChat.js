@@ -1,12 +1,11 @@
 import Conversation from "../../../models/ConversationSchema.js"
 
-export const findChat  = async (req, res) => {
-    try {
+/* busca chat x id de los dos users sender y receiver */
+export const findChat  = async (senderId, receiverId) => {
+    
       const conversation = await Conversation.findOne({
-        users: { $all: [req.params.senderUserId, req.params.receiverUserId] },
-      });
-      res.status(200).json(conversation)
-    } catch (err) {
-      res.status(500).json(err);
-    }
+        users: { $all: [senderId, receiverId] },
+      }).populate('users');
+
+      return conversation
   };
