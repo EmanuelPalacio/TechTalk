@@ -1,7 +1,9 @@
 import { searchChat } from '../../service/database/chat/searchChat.js';
 import { createMessage } from '../../service/database/message/createMessage.js';
 import { searchMessage } from '../../service/database/message/searchMessage.js';
+import { findChat } from '../../service/database/chat/findChat.js';
 import { io } from '../../config/index.js';
+import { createChat } from '../../service/database/chat/createChat.js';
 
 const socketController = async (socket) => {
   const userId = socket.handshake.query.userId;
@@ -33,6 +35,19 @@ const socketController = async (socket) => {
     const conv = await searchChat(userId);
 
     socket.emit('sendConv', conv);
+  });
+
+  //busca conversation x id de los dos user 
+  socket.on('getConvTwoUsers', async (senderId, receiverId) => {
+    console.log(`Socket Controller senderId: ${senderId}, receiverId: ${receiverId}`);
+    let conv = await findChat(senderId, receiverId);
+    if (conv === null){
+      const newconv = await createChat(senderId, receiverId)
+      console.log("Conversation creada en socket : ", newconv)
+      conv = newconv
+    }
+    console.log("Conversation en socket : ", conv)
+    socket.emit('sendConvTwoUsers', conv);
   });
 
   //busca mensajes x id conversation
