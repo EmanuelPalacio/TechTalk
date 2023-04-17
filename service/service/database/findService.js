@@ -5,7 +5,7 @@ export const findUser = async (email) => {
 };
 
 export const searchUser = async (id) => {
-  return await UserSchema.findById( id );
+  return await UserSchema.findById(id);
 };
 
 export const findUserById = async (id) => {
@@ -25,11 +25,11 @@ export const listUsers = async (from, limit) => {
 };
 
 export const findReading = async (from, limit) => {
-  const [total, actvities] = await Promise.all([
+  const [total, activities] = await Promise.all([
     ReadingSchema.count(),
     ReadingSchema.find().skip(Number(from)).limit(Number(limit)),
   ]);
-  return { total, actvities };
+  return { total, activities };
 };
 
 export const findReadingById = async (id) => {

@@ -10,29 +10,29 @@ const ActivitiesScreen = () => {
       <View style={styles.container}>
         <CardActivity
           nav={() =>
-            navigation.navigate('selectedActivity', { activity: 'Reading' })
+            navigation.navigate('selectedActivity', { activity: 'reading' })
           }
           name='Reading'
           url='https://res.cloudinary.com/dshfifpgv/image/upload/v1681500368/Images%20proyect%20techTalk/TechTalkAssets/activities/Recurso_2reading-azul_3_ossngo.png'
         />
         <CardActivity
-          nav={() =>
-            navigation.navigate('selectedActivity', { activity: 'Listeinig' })
-          }
+          /* nav={() =>
+            navigation.navigate('selectedActivity', { activity: 'listeinig' })
+          } */
           name='Listeinig'
           url='https://res.cloudinary.com/dshfifpgv/image/upload/v1681500368/Images%20proyect%20techTalk/TechTalkAssets/activities/Recurso_2listeinig-azul_4_hpmsbl.png'
         />
         <CardActivity
-          nav={() =>
-            navigation.navigate('selectedActivity', { activity: 'Writing' })
-          }
+          /* nav={() =>
+            navigation.navigate('selectedActivity', { activity: 'writing' })
+          } */
           name='Writing'
           url='https://res.cloudinary.com/dshfifpgv/image/upload/v1681500368/Images%20proyect%20techTalk/TechTalkAssets/activities/Recurso_1writing-azul_3_j8lfjc.png'
         />
         <CardActivity
-          nav={() =>
-            navigation.navigate('selectedActivity', { activity: 'Speaking' })
-          }
+          /* nav={() =>
+            navigation.navigate('selectedActivity', { activity: 'speaking' })
+          } */
           name='Speaking'
           url='https://res.cloudinary.com/dshfifpgv/image/upload/v1681500368/Images%20proyect%20techTalk/TechTalkAssets/activities/Recurso_2speaking-azul_3_pqhkfd.png'
         />
