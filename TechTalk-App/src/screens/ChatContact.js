@@ -24,6 +24,7 @@ const ChatContact = ({ route }) => {
       text: value.text,
       idConversation,
     });
+    
     resetValues();
   };
 
@@ -43,7 +44,7 @@ const ChatContact = ({ route }) => {
       setMessages((prevMessages) => [...prevMessages, newMessage]);
       console.log(newMessage);
     });
-  }, []);
+  }, [idConversation]);
 
   return (
     <View style={styles.container}>

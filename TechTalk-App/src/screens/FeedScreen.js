@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, FlatList, StyleSheet } from 'react-native'
+import { View, FlatList, StyleSheet, ScrollView } from 'react-native'
 import theme from '../themes/theme.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
@@ -32,12 +32,13 @@ const FeedScreen = () => {
         };
       });
       dispatch(updateConversation(contacAndConversation));
-      console.log("Conversation dsp update: ", conversation)
+      
     }); 
 
     }, [dispatch, user])
 
   return (
+    <ScrollView>
     <View style={styles.container}>
       <FlatList
         style={styles.root}
@@ -50,6 +51,7 @@ const FeedScreen = () => {
             keyExtractor={(item) => item._id}
             />
     </View>
+    </ScrollView>
   )
 }
 

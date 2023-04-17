@@ -6,7 +6,7 @@ export default async function getUsers() {
       `/user`,
       {},
     );
-    console.log("Users en funcion getUsers", data)
+    
     return data;
   } catch (error) {
     throw new Error(error);
