@@ -27,7 +27,7 @@ const Home = () => {
       </View>
       <View style={styles.robot}>
         <SvgUri
-          height='300px'
+          height='100%'
           alignSelf='center'
           resizeMode='contain'
           uri='https://res.cloudinary.com/dshfifpgv/image/upload/v1680632381/Images%20proyect%20techTalk/TechTalkAssets/HiRobot_y5cgw7.svg'
@@ -52,10 +52,9 @@ const Home = () => {
 const styles = StyleSheet.create({
   root: {
     flexDirection: 'column',
-    marginTop: Constants.statusBarHeight,
-    marginBottom: Constants.bottomTabBarHeight,
-    height: '100%',
-    justifyContent: 'space-evenly',
+    minHeight: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
     gap: 15,
     backgroundColor: theme.colors.primary,
   },
@@ -69,7 +68,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   robot: {
-    height: 200,
+    height: '50%',
     alignItems: 'center',
     justifyContent: 'center',
   },

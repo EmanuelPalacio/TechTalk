@@ -4,19 +4,12 @@ import { StyleSheet, View } from 'react-native';
 import { SvgUri } from 'react-native-svg';
 import { useSelector } from 'react-redux';
 
-export default function LoadScreen({ route }) {
+export default function LoadScreen() {
   const { status } = useSelector((store) => store.loading);
-  const auth = useSelector((store) => store.auth);
   const navigation = useNavigation();
   const isFocused = useIsFocused();
-  const { timer } = route.params;
 
   useEffect(() => {
-    if (timer && auth.status === 'unauthorized') {
-      setTimeout(() => {
-        navigation.navigate('Home');
-      }, 2000);
-    }
     if (status === 'fulfilled' && isFocused) {
       navigation.navigate('App');
     }

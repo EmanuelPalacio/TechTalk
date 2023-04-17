@@ -108,8 +108,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: Constants.statusBarHeight,
-    marginBottom: Constants.bottomTabBarHeight,
     minHeight: '100%',
     width: '100%',
     gap: 15,
