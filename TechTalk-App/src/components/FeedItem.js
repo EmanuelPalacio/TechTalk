@@ -17,18 +17,9 @@ const FeedItem = ({conectUser}) => {
     //busco si tengo conversation con contacto seleccionado
        socket.emit('getConvTwoUsers', user._id, conectUser._id);
        socket.on('sendConvTwoUsers', (data) => {
-       console.log("socket recibe sendConvTwoUsers data: ", data)
        
-       //const contact = data.users.find((elem) => elem._id === conectUser._id);
-      //  console.log("Contact : ", contact)
-      //  const contacAndConversation = {
-      //      idConversation: data._id,
-      //      contact
-      //    };
        const idConversation = data._id
        
-      //  dispatch(addConversation(contacAndConversation));
-      //  const {idConversation} = contacAndConversation
       navigation.navigate('Menssages', {
           idConversation: idConversation,
           contactName: conectUser.fullname 

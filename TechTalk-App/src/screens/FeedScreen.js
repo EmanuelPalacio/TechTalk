@@ -18,7 +18,8 @@ const FeedScreen = () => {
     useEffect(() => {
         async function request () {
         const data =  await getUsers()
-        setUsers(data)
+        const newusers = data.filter(e => e._id !== user._id)
+        setUsers(newusers)
         }
         request()
     // busca las conversations del user logueado
@@ -38,7 +39,7 @@ const FeedScreen = () => {
     }, [dispatch, user])
 
   return (
-    <ScrollView>
+    
     <View style={styles.container}>
       <FlatList
         style={styles.root}
@@ -51,13 +52,10 @@ const FeedScreen = () => {
             keyExtractor={(item) => item._id}
             />
     </View>
-    </ScrollView>
+  
   )
 }
 
-// renderItem={({ item }) => (
-//     <Text>{item.fullname}</Text>
-// )}
 export default FeedScreen;
 
 const styles = StyleSheet.create({

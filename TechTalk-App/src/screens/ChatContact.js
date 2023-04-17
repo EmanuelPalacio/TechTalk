@@ -27,6 +27,7 @@ const ChatContact = ({ route }) => {
     
     resetValues();
   };
+ 
 
   useEffect(() => {
     navigation.setOptions({
