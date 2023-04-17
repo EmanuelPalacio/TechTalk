@@ -5,6 +5,16 @@ const Reading = new Schema({
     type: String,
     required: true,
   },
+  image: {
+    url: {
+      type: String,
+      default:
+        'https://res.cloudinary.com/dshfifpgv/image/upload/v1681128139/Images%20proyect%20techTalk/TechTalkAssets/Defaut%20avatar%20profile/Reading_tglith.svg',
+    },
+    id: {
+      type: String,
+    },
+  },
   text: {
     content: {
       type: String,

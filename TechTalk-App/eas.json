@@ -21,7 +21,8 @@
         "buildType": "apk"
       },
       "ios": {
-        "resourceClass": "m-medium"
+        "resourceClass": "m-medium",
+        "distribution": "internal"
       }
     },
     "androidapk": {

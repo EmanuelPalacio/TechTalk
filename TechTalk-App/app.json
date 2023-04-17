@@ -6,11 +6,10 @@
     "orientation": "portrait",
     "icon": "./assets/Logo.png",
     "userInterfaceStyle": "light",
+    "backgroundColor": "#ffffff",
     "splash": {
-      "image": "./assets/Logo.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "imageResizeMode": "contain",
-      "imageWidth": 200,
       "backgroundColor": "#ffffff"
     },
     "assetBundlePatterns": [
@@ -18,7 +17,8 @@
       "assets/fonts/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.techtalkteamdev.techtalk"
     },
     "android": {
       "adaptiveIcon": {

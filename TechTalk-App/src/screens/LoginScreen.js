@@ -1,7 +1,6 @@
 /* react / expo */
 import React from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
-import Constants from 'expo-constants';
 import { SvgUri } from 'react-native-svg';
 /* redux */
 import { useDispatch } from 'react-redux';
@@ -98,8 +97,6 @@ const styles = StyleSheet.create({
   root: {
     flexDirection: 'column',
     justifyContent: 'center',
-    marginTop: Constants.statusBarHeight,
-    marginBottom: Constants.bottomTabBarHeight,
     minHeight: '100%',
     width: '100%',
     gap: 15,
