@@ -16,7 +16,7 @@ const Contact = ({ contact, idConversation }) => {
       }
     >
       <Image
-        style={styles.image}
+        style={styles.avatar}
         source={{
           uri: contact.image.url,
         }}
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 20,
   },
-  image: {
+  avatar: {
     width: 80,
     height: 80,
     borderRadius: 40,

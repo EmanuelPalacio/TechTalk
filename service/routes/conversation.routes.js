@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createConversation, searchConversation } from "../controllers/conversation/index.js"
+import { convTwoUsers, createConversation, searchConversation } from "../controllers/conversation/index.js"
 
 const router = Router();
 
@@ -7,5 +7,7 @@ const router = Router();
 router.post('/conversations', createConversation);
 /* busca una conversacion */
 router.get('/conversations', searchConversation);
+/* busca x las dos id de la conversation */
+router.get('/conversations/:senderId/:receiverId', convTwoUsers);
 
 export default router;
