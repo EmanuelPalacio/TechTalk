@@ -19,11 +19,13 @@ const ChatContact = ({ route }) => {
   const { user } = useSelector((store) => store.auth);
 
   const sendMenssage = () => {
-    socket.emit('sendMessage', {
-      senderId: user._id,
+    const message = {
+      sender: user._id,
       text: value.text,
       idConversation,
-    });
+    };
+    socket.emit('sendMessage', message);
+    setMessages((prevMessages) => [...prevMessages, message]);
     resetValues();
   };
 
@@ -41,9 +43,9 @@ const ChatContact = ({ route }) => {
     });
     socket.on('getMessage', (newMessage) => {
       setMessages((prevMessages) => [...prevMessages, newMessage]);
-      console.log(newMessage);
     });
-  }, []);
+    console.log('chatContact', route);
+  }, [idConversation]);
 
   return (
     <View style={styles.container}>

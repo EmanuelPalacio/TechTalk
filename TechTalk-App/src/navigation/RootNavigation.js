@@ -15,12 +15,11 @@ const RootNavegation = () => {
       {status === 'unauthorized' ? (
         <HomeNavigation />
       ) : (
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen
-            name='Loading'
-            initialParams={{ timer: false }}
-            component={LoadScreen}
-          />
+        <Stack.Navigator
+          initialRouteName='Loading'
+          screenOptions={{ headerShown: false }}
+        >
+          <Stack.Screen name='Loading' component={LoadScreen} />
           <Stack.Screen name='App' component={TabNavigation} />
         </Stack.Navigator>
       )}

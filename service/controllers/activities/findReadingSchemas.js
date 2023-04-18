@@ -6,7 +6,7 @@ const findReadingSchemas = async (req, res) => {
     const activity = await findReading(from, limit);
     res.status(200).json({
       ok: true,
-      activity,
+      ...activity,
     });
   } catch (error) {
     res.status(500).json({

@@ -9,7 +9,11 @@ export const conversation = createSlice({
     updateConversation: (state, action) => {
       state.conversation = action.payload;
     },
+    addConversation: (state, action) => {
+      const newconv = action.payload
+      state.conversation = [...state.conversation, newconv]
+    }
   },
 });
 
-export const { updateConversation } = conversation.actions;
+export const { updateConversation, addConversation } = conversation.actions;
