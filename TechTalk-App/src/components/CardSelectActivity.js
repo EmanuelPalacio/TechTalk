@@ -1,15 +1,14 @@
 import {
-  Image,
   StyleSheet,
   TouchableOpacity,
   View,
   useWindowDimensions,
 } from 'react-native';
-
+import { SvgUri } from 'react-native-svg';
 import theme from '../themes/theme.js';
 import StyledText from './StyledText.js';
 
-const CardSelectActivity = ({ url, name, nav, level, idActivity }) => {
+const CardSelectActivity = ({ url, name, nav, level }) => {
   const windowWidth = useWindowDimensions().width;
   const height = windowWidth * 0.4;
   return (
@@ -18,9 +17,14 @@ const CardSelectActivity = ({ url, name, nav, level, idActivity }) => {
       delayLongPress={500}
       onPress={nav}
     >
-      <Image style={styles.image} source={{ uri: url }} />
+      <View style={styles.level}>
+        <StyledText fontWeight='bold' color='secondary'>
+          {level}
+        </StyledText>
+      </View>
+      <SvgUri style={styles.image} uri={url} />
       <View style={styles.containerText}>
-        <StyledText fontSize='subheading' fontWeight='bold' color='secondary'>
+        <StyledText fontWeight='bold' color='secondary'>
           {name}
         </StyledText>
       </View>
@@ -28,6 +32,7 @@ const CardSelectActivity = ({ url, name, nav, level, idActivity }) => {
   );
 };
 export default CardSelectActivity;
+
 const styles = StyleSheet.create({
   container: {
     position: 'relative',
@@ -49,8 +54,21 @@ const styles = StyleSheet.create({
   },
   containerText: {
     alignItems: 'center',
+    justifyContent: 'center',
     width: '100%',
-    maxHeight: '30%',
+    minHeight: '30%',
     backgroundColor: theme.colors.secondary,
+    paddingHorizontal: 5,
+  },
+  level: {
+    position: 'absolute',
+    right: 5,
+    top: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 40,
+    width: 40,
+    borderRadius: 20,
+    backgroundColor: theme.colors.third,
   },
 });

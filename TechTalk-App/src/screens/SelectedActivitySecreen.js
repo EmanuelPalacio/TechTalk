@@ -4,21 +4,18 @@ import { useNavigation } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
 import getActivity from '../services/getActivity.js';
 import StyledText from '../components/StyledText.js';
+import CardSelectActivity from '../components/CardSelectActivity.js';
 
 const SelectedActivityScreen = ({ route }) => {
   const navigation = useNavigation();
   const [activities, setActivities] = useState([]);
   useEffect(() => {
-    // IIFE function
     const setData = async () => {
       const data = await getActivity(route.params.activity);
       setActivities(data.activities);
     };
     setData();
   }, []);
-  useEffect(() => {
-    console.log(activities);
-  }, [activities]);
 
   return (
     <View style={styles.container}>
@@ -27,7 +24,16 @@ const SelectedActivityScreen = ({ route }) => {
         contentContainerStyle={styles.containerList}
         columnWrapperStyle={styles.columns}
         data={activities}
-        renderItem={({ item }) => <StyledText>{item.question}</StyledText>}
+        renderItem={({ item }) => (
+          <CardSelectActivity
+            url={item.image.url}
+            name={item.text.title}
+            level={item.level}
+            nav={() =>
+              navigation.navigate('activityToSolve', { activity: item })
+            }
+          />
+        )}
         keyExtractor={(item) => item._id}
       />
     </View>

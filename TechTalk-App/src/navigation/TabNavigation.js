@@ -1,9 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import ComingSoonScreen from '../screens/ComingSoonScreen.js';
 import FeedScreen from '../screens/FeedScreen.js';
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import theme from '../themes/theme.js';
 import { SvgUri } from 'react-native-svg';
 import StyledText from '../components/StyledText.js';
@@ -16,8 +14,6 @@ const Tab = createBottomTabNavigator();
 /* En esta parte va la logia de socket.io para las notificaciones */
 
 const TabNavigation = () => {
-  const navigation = useNavigation();
-
   return (
     <Tab.Navigator
       screenOptions={{
@@ -59,28 +55,6 @@ const TabNavigation = () => {
       }}
     >
       <Tab.Screen
-        name='Comunidad de Aprendizaje'
-        component={FeedScreen}
-        options={{
-          tabBarIcon: ({ focused }) => {
-            return (
-              <Image
-                source={
-                  focused
-                    ? {
-                        uri: 'https://res.cloudinary.com/dshfifpgv/image/upload/v1680781051/Images%20proyect%20techTalk/TechTalkAssets/TabIcons/ConectarSelected_xb0jdv.png',
-                      }
-                    : {
-                        uri: 'https://res.cloudinary.com/dshfifpgv/image/upload/v1680780236/Images%20proyect%20techTalk/TechTalkAssets/TabIcons/Conectar_iw8ylh.png',
-                      }
-                }
-                style={{ width: 20, height: 20 }}
-              />
-            );
-          },
-        }}
-      />
-      <Tab.Screen
         name='Chat'
         component={ChatNavigation}
         options={{
@@ -103,6 +77,29 @@ const TabNavigation = () => {
           },
         }}
       />
+      <Tab.Screen
+        name='Comunidad de Aprendizaje'
+        component={FeedScreen}
+        options={{
+          tabBarIcon: ({ focused }) => {
+            return (
+              <Image
+                source={
+                  focused
+                    ? {
+                        uri: 'https://res.cloudinary.com/dshfifpgv/image/upload/v1680781051/Images%20proyect%20techTalk/TechTalkAssets/TabIcons/ConectarSelected_xb0jdv.png',
+                      }
+                    : {
+                        uri: 'https://res.cloudinary.com/dshfifpgv/image/upload/v1680780236/Images%20proyect%20techTalk/TechTalkAssets/TabIcons/Conectar_iw8ylh.png',
+                      }
+                }
+                style={{ width: 20, height: 20 }}
+              />
+            );
+          },
+        }}
+      />
+
       <Tab.Screen
         name='Aprende'
         component={ActivitiesNavegation}
