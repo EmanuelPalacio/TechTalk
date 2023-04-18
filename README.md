@@ -1,6 +1,6 @@
 TechTalk App
 
-Desarrollamos una aplicación exclusivamente para personas de la indutria IT que les da la oportunidad de aprender y practicar inglés de forma dinámica, a través del chat principal de la app se pondrán en contacto con personas de todo el mundo para entablar conversaciones sin límite. Además, la app cuenta con una sección de actividades que invita a fortalecer mediante la práctica los distintos skills del idioma.
+Desarrollamos una aplicación exclusivamente para personas de la indutria IT que les da la oportunidad de aprender y practicar inglés de forma dinámica, a través del chat principal de la app se pondrán en contacto con personas de todo el mundo para entablar conversaciones sin límite. Además, la app cuenta con una sección de actividades que invita a fortalecer, mediante la práctica, los distintos skills del idioma.
 
 Frontend:
 - React Native
