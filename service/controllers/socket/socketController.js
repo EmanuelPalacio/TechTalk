@@ -23,7 +23,7 @@ const socketController = async (socket) => {
       sender: senderId,
       text,
     });
-    console.log(idConversation);
+    
     io.in(idConversation).emit('getMessage', {
       sender: senderId,
       text,

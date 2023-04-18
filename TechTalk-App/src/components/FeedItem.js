@@ -5,30 +5,35 @@ import { useNavigation } from '@react-navigation/native';
 import { useSelector, useDispatch } from 'react-redux';
 import { socket } from '../services/socketConnect.js';
 import { addConversation } from '../store/conversation/conversation.js';
+import { useEffect, useState } from 'react';
 
 
 const FeedItem = ({conectUser}) => {
     const navigation = useNavigation();
     const { user } = useSelector((store) => store.auth);
-    
+    const [ newConv, setNewConv ] = useState(null);
     const dispatch = useDispatch();
+
+useEffect(()=>{
+  console.log("useEfe conv : ", newConv)
+  if(newConv !== null){
+    dispatch(addConversation(newConv));
+  }
+}, [dispatch, newConv])
 
   const createConv = () => {
     //busco si tengo conversation con contacto seleccionado
        socket.emit('getConvTwoUsers', user._id, conectUser._id);
        socket.on('sendConvTwoUsers', (data) => {
-       console.log("socket recibe sendConvTwoUsers data: ", data)
        
-       //const contact = data.users.find((elem) => elem._id === conectUser._id);
-      //  console.log("Contact : ", contact)
-      //  const contacAndConversation = {
-      //      idConversation: data._id,
-      //      contact
-      //    };
        const idConversation = data._id
+       const newConv = {
+          idConversation: idConversation,
+          contact: data
+       }
+       setNewConv(newConv)
+       console.log("New Conv : ", newConv)
        
-      //  dispatch(addConversation(contacAndConversation));
-      //  const {idConversation} = contacAndConversation
       navigation.navigate('Menssages', {
           idConversation: idConversation,
           contactName: conectUser.fullname 
