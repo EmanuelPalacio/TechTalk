@@ -3,11 +3,12 @@ import { useNavigation } from '@react-navigation/native';
 import ComingSoonScreen from '../screens/ComingSoonScreen.js';
 import ActivitiesScreen from '../screens/ActivitiesScreen.js';
 import SelectedActivityScreen from '../screens/SelectedActivitySecreen.js';
+import StyledText from '../components/StyledText.js';
+import ActivityToSolve from '../screens/ActivityToSolve.js';
 
 const Stack = createNativeStackNavigator();
 
 const ActivitiesNavegation = () => {
-  const navigation = useNavigation();
   return (
     <Stack.Navigator
       initialRouteName='Activities'
@@ -18,6 +19,7 @@ const ActivitiesNavegation = () => {
         name='selectedActivity'
         component={SelectedActivityScreen}
       />
+      <Stack.Screen name='activityToSolve' component={ActivityToSolve} />
     </Stack.Navigator>
   );
 };
