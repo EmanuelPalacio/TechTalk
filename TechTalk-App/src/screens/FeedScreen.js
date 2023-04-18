@@ -8,22 +8,22 @@ import FeedItem from '../components/FeedItem.js';
 import { socket } from '../services/socketConnect.js';
 import { updateConversation } from '../store/conversation/conversation.js';
 
-const FeedScreen = () => {
+const FeedScreen = ({ route }) => {
   const { user } = useSelector((store) => store.auth);
-  const { conversation } = useSelector((store) => store.conversation);
   const [users, setUsers] = useState(null);
   const dispatch = useDispatch();
 
   // traer todos los usuarios
   useEffect(() => {
-    async function request() {
+    const request = async () => {
       const data = await getUsers();
-      const newusers = data.filter((e) => e._id !== user._id);
-      setUsers(newusers);
-    }
+      const usersList = data.filter((e) => e._id !== user._id);
+      setUsers(usersList);
+      // busca las conversations del user logueado
+    };
     request();
-    // busca las conversations del user logueado
     socket.emit('getConv', user._id);
+
     socket.on('sendConv', (data) => {
       const contacAndConversation = data.map((item) => {
         const contact = item.users.find((elem) => elem._id !== user._id);
@@ -34,7 +34,10 @@ const FeedScreen = () => {
       });
       dispatch(updateConversation(contacAndConversation));
     });
-  }, [dispatch, user]);
+    return () => {
+      socket.off('sendConv');
+    };
+  }, []);
 
   return (
     <FlatList

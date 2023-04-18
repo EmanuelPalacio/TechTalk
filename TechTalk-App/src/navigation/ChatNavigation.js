@@ -14,7 +14,6 @@ const ChatNavigation = () => {
   const navigation = useNavigation();
   return (
     <Stack.Navigator
-      initialRouteName='Conctacts'
       screenOptions={{
         headerTitleAlign: 'center',
         headerTintColor: theme.colors.primaryText,

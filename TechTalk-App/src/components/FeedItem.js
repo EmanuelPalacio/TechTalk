@@ -1,42 +1,25 @@
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import StyledText from './StyledText.js';
 import theme from '../themes/theme.js';
-import { useNavigation } from '@react-navigation/native';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { socket } from '../services/socketConnect.js';
-import { addConversation } from '../store/conversation/conversation.js';
-import { useEffect, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
-const FeedItem = ({ conectUser }) => {
-  const navigation = useNavigation();
+const FeedItem = ({ conectUser, nav }) => {
   const { user } = useSelector((store) => store.auth);
-  const [newConv, setNewConv] = useState(null);
-  const dispatch = useDispatch();
-
-  /* useEffect(() => {
-    console.log('useEfe conv : ', newConv);
-    if (newConv !== null) {
-      dispatch(addConversation(newConv));
-    }
-  }, [dispatch, newConv]); */
-
+  const navigate = useNavigation();
   const createConv = () => {
-    //busco si tengo conversation con contacto seleccionado
-    socket.emit('getConvTwoUsers', user._id, conectUser._id);
-    socket.on('sendConvTwoUsers', (data) => {
-      const idConversation = data._id;
-      const newConv = {
-        idConversation: idConversation,
-        contact: data,
-      };
-      setNewConv(newConv);
-      console.log('New Conv : ', newConv);
-
-      navigation.navigate('Menssages', {
-        idConversation: idConversation,
-        contactName: conectUser.fullname,
+    const callback = (idConversation) => {
+      navigate.navigate('Chat', {
+        screen: 'Menssages',
+        params: {
+          idConversation: idConversation,
+          contactName: conectUser.fullname,
+        },
       });
-    });
+    };
+    //busco si tengo conversation con contacto seleccionado
+    socket.emit('getConvTwoUsers', user._id, conectUser._id, callback);
   };
 
   return (

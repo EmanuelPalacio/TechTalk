@@ -5,14 +5,19 @@ import Contact from '../components/Contact.js';
 import { useEffect } from 'react';
 import { socket } from '../services/socketConnect.js';
 import { updateConversation } from '../store/conversation/conversation.js';
+import { useIsFocused } from '@react-navigation/native';
 
 const ContactScreen = () => {
   const { conversation } = useSelector((store) => store.conversation);
   const { user } = useSelector((store) => store.auth);
   const dispatch = useDispatch();
+  const isFocused = useIsFocused();
 
   useEffect(() => {
     socket.emit('getConv', user._id);
+  }, [isFocused]);
+
+  useEffect(() => {
     socket.on('sendConv', (data) => {
       const contacAndConversation = data.map((item) => {
         const contact = item.users.find((elem) => elem._id !== user._id);
@@ -23,7 +28,11 @@ const ContactScreen = () => {
       });
       dispatch(updateConversation(contacAndConversation));
     });
-  }, [dispatch, user]);
+    return () => {
+      socket.off('sendConv');
+      console.log('se cerro');
+    };
+  }, []);
 
   return (
     <View style={styles.container}>

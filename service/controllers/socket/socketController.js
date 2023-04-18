@@ -17,15 +17,15 @@ const socketController = async (socket) => {
   }
 
   //send and get message
-  socket.on('sendMessage', async ({ senderId, text, idConversation }) => {
+  socket.on('sendMessage', async ({ sender, text, idConversation }) => {
     await createMessage({
       conversationId: idConversation,
-      sender: senderId,
+      sender: sender,
       text,
     });
-    
+
     io.in(idConversation).emit('getMessage', {
-      sender: senderId,
+      sender: sender,
       text,
     });
   });
@@ -33,21 +33,18 @@ const socketController = async (socket) => {
   //busca conversation x id user y envia conversations
   socket.on('getConv', async (userId) => {
     const conv = await searchChat(userId);
-
     socket.emit('sendConv', conv);
   });
 
-  //busca conversation x id de los dos user 
-  socket.on('getConvTwoUsers', async (senderId, receiverId) => {
-    console.log(`Socket Controller senderId: ${senderId}, receiverId: ${receiverId}`);
+  //busca conversation x id de los dos user
+  socket.on('getConvTwoUsers', async (senderId, receiverId, callback) => {
     let conv = await findChat(senderId, receiverId);
-    if (conv === null){
-      const newconv = await createChat(senderId, receiverId)
-      console.log("Conversation creada en socket : ", newconv)
-      conv = newconv
+    if (conv === null) {
+      const newconv = await createChat(senderId, receiverId);
+      console.log('Conversation creada en socket : ', newconv);
+      conv = newconv;
     }
-    console.log("Conversation en socket : ", conv)
-    socket.emit('sendConvTwoUsers', conv);
+    callback(conv._id);
   });
 
   //busca mensajes x id conversation
