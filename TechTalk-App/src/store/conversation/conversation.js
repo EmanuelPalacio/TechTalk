@@ -16,4 +16,4 @@ export const conversation = createSlice({
   },
 });
 
-export const { updateConversation } = conversation.actions;
+export const { updateConversation, addConversation } = conversation.actions;
