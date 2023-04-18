@@ -19,13 +19,16 @@ const ChatContact = ({ route }) => {
   const { user } = useSelector((store) => store.auth);
 
   const sendMenssage = () => {
-    socket.emit('sendMessage', {
+    const message = {
       senderId: user._id,
       text: value.text,
       idConversation,
-    });
+    }
+    socket.emit('sendMessage', message);
+    setMessages((prevMessages) => [...prevMessages, message]);
     resetValues();
   };
+ 
 
   useEffect(() => {
     navigation.setOptions({
@@ -43,7 +46,7 @@ const ChatContact = ({ route }) => {
       setMessages((prevMessages) => [...prevMessages, newMessage]);
       console.log(newMessage);
     });
-  }, []);
+  }, [idConversation]);
 
   return (
     <View style={styles.container}>

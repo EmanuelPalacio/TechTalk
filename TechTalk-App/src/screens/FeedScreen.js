@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, FlatList, StyleSheet } from 'react-native'
+import { View, FlatList, StyleSheet, ScrollView } from 'react-native'
 import theme from '../themes/theme.js';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
@@ -18,7 +18,8 @@ const FeedScreen = () => {
     useEffect(() => {
         async function request () {
         const data =  await getUsers()
-        setUsers(data)
+        const newusers = data.filter(e => e._id !== user._id)
+        setUsers(newusers)
         }
         request()
     // busca las conversations del user logueado
@@ -32,12 +33,13 @@ const FeedScreen = () => {
         };
       });
       dispatch(updateConversation(contacAndConversation));
-      console.log("Conversation dsp update: ", conversation)
+      
     }); 
 
     }, [dispatch, user])
 
   return (
+    
     <View style={styles.container}>
       <FlatList
         style={styles.root}
@@ -50,12 +52,10 @@ const FeedScreen = () => {
             keyExtractor={(item) => item._id}
             />
     </View>
+  
   )
 }
 
-// renderItem={({ item }) => (
-//     <Text>{item.fullname}</Text>
-// )}
 export default FeedScreen;
 
 const styles = StyleSheet.create({

@@ -6,7 +6,7 @@ export default async function createConversation(newConversation) {
       `/chat/conversations`,
       newConversation
     );
-    console.log("Conversation created : ", data)
+    
     return data;
   } catch (error) {
     throw new Error(error);
