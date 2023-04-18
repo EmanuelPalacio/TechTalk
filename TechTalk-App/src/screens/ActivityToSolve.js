@@ -2,74 +2,91 @@ import { useEffect, useState } from 'react';
 import { FlatList, ScrollView, StyleSheet, View } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 import StyledText from '../components/StyledText.js';
+import StyledButtom from '../components/StyledButton.js';
 import theme from '../themes/theme.js';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
 
 const ActivityToSolve = ({ route }) => {
   const { activity } = route.params;
   const [selectedIndex, setIndex] = useState({});
+  const navigation = useNavigation();
+  const isFocused = useIsFocused();
+
+  const handleCheck = () => {
+    const isCorrect = activity.listOfAnswers.map((elem) => elem.isCorrect);
+    const resp = Object.values(selectedIndex);
+    const compare = resp.filter(
+      (elem, index) => elem === isCorrect[index],
+    ).length;
+    isCorrect.length === resp.length &&
+      navigation.navigate('resolvedActivity', {
+        compare,
+        numberQuestions: isCorrect.length,
+      });
+  };
 
   useEffect(() => {
-    console.log(selectedIndex);
-  }, [selectedIndex]);
+    setIndex({});
+  }, [isFocused]);
 
   return (
-    <ScrollView>
-      <View style={styles.root}>
-        <View style={styles.textTitle}>
-          <StyledText fontSize='title' color='secondary' fontWeight='bold'>
-            {activity.text.title}
-          </StyledText>
-        </View>
-        <View style={styles.textContent}>
-          <StyledText fontSize='subheading'>{activity.text.content}</StyledText>
-        </View>
-        <StyledText color='third' fontWeight='bold'>
-          {activity.question}
+    <ScrollView contentContainerStyle={styles.root}>
+      <View style={styles.textTitle}>
+        <StyledText fontSize='title' color='secondary' fontWeight='bold'>
+          {activity.text.title}
         </StyledText>
-        <FlatList
-          data={activity.listOfAnswers}
-          renderItem={({ item, index }) => (
-            <View style={styles.containerCheckbox}>
-              <View style={styles.checkboxText}>
-                <StyledText fontSize='subheading' color='secondary'>
-                  {`${index + 1}. ${item.answer}`}
-                </StyledText>
+      </View>
+      <View style={styles.textContent}>
+        <StyledText fontSize='subheading'>{activity.text.content}</StyledText>
+      </View>
+      <StyledText color='third' fontWeight='bold'>
+        {activity.question}
+      </StyledText>
+      <FlatList
+        data={activity.listOfAnswers}
+        renderItem={({ item, index }) => (
+          <View style={styles.containerCheckbox}>
+            <View style={styles.checkboxText}>
+              <StyledText fontSize='subheading' color='secondary'>
+                {`${index + 1}. ${item.answer}`}
+              </StyledText>
+            </View>
+            <View style={styles.checkboxs}>
+              <View
+                style={{
+                  ...styles.checkbox,
+                  borderBottomWidth: 1,
+                  borderColor: theme.colors.secondary,
+                }}
+              >
+                <CheckBox
+                  checked={selectedIndex[index] === true}
+                  onPress={() =>
+                    setIndex((prev) => ({ ...prev, [index]: true }))
+                  }
+                  checkedIcon='dot-circle-o'
+                  uncheckedIcon='circle-o'
+                />
+                <StyledText>verdadero</StyledText>
               </View>
-              <View style={styles.checkboxs}>
-                <View
-                  style={{
-                    ...styles.checkbox,
-                    borderBottomWidth: 1,
-                    borderColor: theme.colors.secondary,
-                  }}
-                >
-                  <CheckBox
-                    checked={selectedIndex[index] === true}
-                    onPress={() =>
-                      setIndex((prev) => ({ ...prev, [index]: true }))
-                    }
-                    checkedIcon='dot-circle-o'
-                    uncheckedIcon='circle-o'
-                  />
-                  <StyledText>verdadero</StyledText>
-                </View>
-                <View style={styles.checkbox}>
-                  <CheckBox
-                    checked={selectedIndex[index] === false}
-                    onPress={() =>
-                      setIndex((prev) => ({ ...prev, [index]: false }))
-                    }
-                    checkedIcon='dot-circle-o'
-                    uncheckedIcon='circle-o'
-                  />
-                  <StyledText>falso</StyledText>
-                </View>
+              <View style={styles.checkbox}>
+                <CheckBox
+                  checked={selectedIndex[index] === false}
+                  onPress={() =>
+                    setIndex((prev) => ({ ...prev, [index]: false }))
+                  }
+                  checkedIcon='dot-circle-o'
+                  uncheckedIcon='circle-o'
+                />
+                <StyledText>falso</StyledText>
               </View>
             </View>
-          )}
-          keyExtractor={(item) => item._id}
-        />
-      </View>
+          </View>
+        )}
+        keyExtractor={(item) => item._id}
+      />
+
+      <StyledButtom text='Comprobar' type='primary' action={handleCheck} />
     </ScrollView>
   );
 };
@@ -81,7 +98,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: theme.colors.primary,
-    height: '100%',
+    minHeight: '100%',
     padding: 20,
     gap: 20,
   },

@@ -8,7 +8,7 @@ export default function StyledButton({ type, text, action }) {
     styles.text,
 
     type === 'secondary' && {
-      color: theme.colors.PrimaryText,
+      color: theme.colors.primaryText,
     },
   ];
 
