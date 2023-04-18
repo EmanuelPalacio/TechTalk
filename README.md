@@ -25,14 +25,7 @@ Tecnologias QA
 - Postman
 
 Equipo:
-Camila Cataldi PM
-Horacio Abitú	Backend
-Emanuel Palacio	Backend
-Cristian Perilla Backend
-Gabriela Esther Mortensen	UI/UX
-Sofía Munno	UI/UX
-Diana Zambrano	UI/UX
-Catalina Armella	QA
+Camila Cataldi - PM // Horacio Abitú - Backend // Emanuel Palacio - Backend // Cristian Perilla - Backend // Gabriela Esther Mortensen - UI/UX // Sofía Munno - UI/UX // Diana Zambrano - UI/UX // Catalina Armella - QA
 
 Link del Deploy ...
 
