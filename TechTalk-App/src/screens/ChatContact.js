@@ -25,7 +25,6 @@ const ChatContact = ({ route }) => {
       idConversation,
     };
     socket.emit('sendMessage', message);
-    setMessages((prevMessages) => [...prevMessages, message]);
     resetValues();
   };
 
@@ -41,11 +40,15 @@ const ChatContact = ({ route }) => {
     socket.on('sendMessages', (data) => {
       setMessages(data);
     });
+  }, [idConversation]);
+  useEffect(() => {
     socket.on('getMessage', (newMessage) => {
       setMessages((prevMessages) => [...prevMessages, newMessage]);
     });
-    console.log('chatContact', route);
-  }, [idConversation]);
+    return () => {
+      socket.off('getMessage');
+    };
+  }, [messages]);
 
   return (
     <View style={styles.container}>

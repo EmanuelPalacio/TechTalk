@@ -18,16 +18,13 @@ const socketController = async (socket) => {
 
   //send and get message
   socket.on('sendMessage', async ({ sender, text, idConversation }) => {
-    await createMessage({
+    const newMess = await createMessage({
       conversationId: idConversation,
       sender: sender,
       text,
     });
 
-    io.in(idConversation).emit('getMessage', {
-      sender: sender,
-      text,
-    });
+    io.in(idConversation).emit('getMessage', newMess);
   });
 
   //busca conversation x id user y envia conversations
@@ -44,6 +41,7 @@ const socketController = async (socket) => {
       console.log('Conversation creada en socket : ', newconv);
       conv = newconv;
     }
+    socket.join(conv._id.toString());
     callback(conv._id);
   });
 
