@@ -24,8 +24,8 @@ Diseño UI/UX
 Tecnologias QA
 - Postman
 
-NOMBRE	Rol
-Camila Cataldi	PM
+Equipo:
+Camila Cataldi PM
 Horacio Abitú	Backend
 Emanuel Palacio	Backend
 Cristian Perilla Backend
