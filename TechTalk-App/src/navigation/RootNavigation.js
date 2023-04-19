@@ -5,11 +5,16 @@ import TabNavigation from './TabNavigation.js';
 import { useSelector } from 'react-redux';
 import LoadScreen from '../screens/LoadScreen.js';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { socket } from '../services/socketConnect.js';
 
 const RootNavegation = () => {
   const { status } = useSelector((store) => store.auth);
-  const { status: loading } = useSelector((store) => store.loading);
   const Stack = createNativeStackNavigator();
+
+  socket.on('joinConversation', (id) => {
+    socket.emit('joined', id);
+  });
+
   return (
     <NavigationContainer>
       {status === 'unauthorized' ? (

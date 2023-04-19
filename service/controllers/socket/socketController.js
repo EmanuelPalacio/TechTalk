@@ -9,6 +9,8 @@ const socketController = async (socket) => {
   const userId = socket.handshake.query.userId;
   console.log('se conecto el socket', userId);
 
+  socket.join(userId);
+
   const ids = await searchChat(userId);
   if (ids.length !== 0) {
     ids.forEach((item) => {
@@ -41,8 +43,13 @@ const socketController = async (socket) => {
       console.log('Conversation creada en socket : ', newconv);
       conv = newconv;
     }
-    socket.join(conv._id.toString());
+    io.to(senderId.toString())
+      .to(receiverId.toString())
+      .emit('joinConversation', conv._id.toString());
     callback(conv._id);
+  });
+  socket.on('joined', (id) => {
+    socket.join(id);
   });
 
   //busca mensajes x id conversation

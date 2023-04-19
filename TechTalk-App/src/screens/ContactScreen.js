@@ -6,6 +6,8 @@ import { useEffect } from 'react';
 import { socket } from '../services/socketConnect.js';
 import { updateConversation } from '../store/conversation/conversation.js';
 import { useIsFocused } from '@react-navigation/native';
+import { SvgUri } from 'react-native-svg';
+import StyledText from '../components/StyledText.js';
 
 const ContactScreen = () => {
   const { conversation } = useSelector((store) => store.conversation);
@@ -36,17 +38,30 @@ const ContactScreen = () => {
 
   return (
     <View style={styles.container}>
-      <FlatList
-        style={styles.root}
-        data={conversation}
-        renderItem={({ item }) => (
-          <Contact
-            contact={item.contact}
-            idConversation={item.idConversation}
+      {conversation.length === 0 ? (
+        <View style={styles.image}>
+          <SvgUri
+            height='100%'
+            resizeMode='contain'
+            uri='https://res.cloudinary.com/dshfifpgv/image/upload/v1681864953/Images%20proyect%20techTalk/TechTalkAssets/RobotTriste_yftxpc.svg'
           />
-        )}
-        keyExtractor={(item) => item.idConversation}
-      />
+          <StyledText color='fourth' fontSize='subheading' fontWeight='bold'>
+            No hay conversaciones iniciadas
+          </StyledText>
+        </View>
+      ) : (
+        <FlatList
+          style={styles.root}
+          data={conversation}
+          renderItem={({ item }) => (
+            <Contact
+              contact={item.contact}
+              idConversation={item.idConversation}
+            />
+          )}
+          keyExtractor={(item) => item.idConversation}
+        />
+      )}
     </View>
   );
 };
@@ -54,8 +69,19 @@ export default ContactScreen;
 
 const styles = StyleSheet.create({
   container: {
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: theme.colors.primary,
     minHeight: '100%',
+  },
+  root: {
+    width: '90%',
+  },
+  image: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '40%',
+    gap: 30,
   },
   list: {
     paddingHorizontal: 10,
