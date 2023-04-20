@@ -27,6 +27,7 @@ Tecnologias QA
 Equipo:
 Camila Cataldi - PM // Horacio Abitú - Backend // Emanuel Palacio - Backend // Cristian Perilla - Backend // Gabriela Esther Mortensen - UI/UX // Sofía Munno - UI/UX // Diana Zambrano - UI/UX // Catalina Armella - QA
 
-Link del Deploy ...
+APK https://expo.dev/artifacts/eas/djAiFgveC5rnN9AbirE4Dc.apk
+Deploy BACK https://techtalkservice.onrender.com
 
 
