@@ -4,10 +4,7 @@ const useDataCollection = (initialState) => {
   const [inputValues, setInputValues] = useState(initialState);
 
   const collection = (text, name) => {
-    setInputValues({
-      ...inputValues,
-      [name]: text,
-    });
+    setInputValues((prev) => ({ ...prev, [name]: text }));
   };
 
   const resetInputValues = () => {

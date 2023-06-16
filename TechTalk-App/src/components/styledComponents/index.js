@@ -1,0 +1,9 @@
+export { default as CardContact } from './cardContact/CardContact';
+export { default as StyledButton } from './styledButton/StyledButton';
+export { default as styleButton } from './styledButton/styleButton';
+export { default as StyledInput } from './styledInput/StyledInput';
+export { default as styleInput } from './styledInput/styleInput';
+export { default as StyledLink } from './styledLink/StyledLink';
+export { default as styleLink } from './styledLink/styleLink';
+export { default as StyledText } from './styledText/StyledText';
+export { default as styleText } from './styledText/styleText';
