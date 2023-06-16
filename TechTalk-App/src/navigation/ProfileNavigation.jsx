@@ -1,5 +1,5 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import navRoutes from '../models/navigationRoutes';
+import navRoutes from '../utils/navigationRoutes';
 import { ProfileScreen, RegisterScreen } from '../screens';
 
 function ProfileNavigation() {

@@ -1,18 +1,18 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import navRoutes from '../models/navigationRoutes';
+import { navigationRoutes } from '../utils';
 import { ActivitiesScreen, LearningScreen } from '../screens';
 
 function LearningNavigation() {
   const Learning = createStackNavigator();
 
   return (
-    <Learning.Navigator initialRouteName={navRoutes.learningRoutes.home}>
+    <Learning.Navigator initialRouteName={navigationRoutes.learningRoutes.home}>
       <Learning.Screen
-        name={navRoutes.learningRoutes.home}
+        name={navigationRoutes.learningRoutes.home}
         component={LearningScreen}
       />
       <Learning.Screen
-        name={navRoutes.learningRoutes.activities}
+        name={navigationRoutes.learningRoutes.activities}
         component={ActivitiesScreen}
       />
     </Learning.Navigator>

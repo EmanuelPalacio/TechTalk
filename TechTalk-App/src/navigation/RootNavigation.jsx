@@ -1,7 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import AuthNavigation from './AuthNavigation';
-import authStatus from '../models/authStatus';
+import authStatus from '../utils/authStatus';
 import { Loading } from '../components/modals';
 
 function RootNavegation() {

@@ -1,14 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import authStatus from '../../models/authStatus';
-import authService from '../../services/Firebase/authService';
-import { createUserService } from '../../services/Firebase';
+import authStatus from '../../utils/authStatus';
 
-export const login = createAsyncThunk('user/fetchUser', async (formData) =>
-  authService(formData)
-);
+export const login = createAsyncThunk('user/fetchUser', async (formData) => {});
 export const register = createAsyncThunk(
   'user/registerUser',
-  async (formData) => createUserService(formData)
+  async (formData) => {}
 );
 
 const userSlice = createSlice({

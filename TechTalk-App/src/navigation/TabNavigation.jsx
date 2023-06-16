@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import ProfileNavigation from './ProfileNavigation';
 import LearningNavigation from './LearningNavigation';
 import { ComunityScreen, MenssagesScreen } from '../screens';
-import navRoutes from '../models/navigationRoutes';
+import navRoutes from '../utils/navigationRoutes';
 import theme from '../theme/theme';
 import {
   TabMenssage,

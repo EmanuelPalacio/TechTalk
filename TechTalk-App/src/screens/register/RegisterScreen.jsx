@@ -15,7 +15,7 @@ import {
   StyledText,
 } from '../../components/styledComponents';
 import styles from './styleRegister';
-import navRoutes from '../../models/navigationRoutes';
+import { navigationRoutes } from '../../utils';
 import StyledLink from '../../components/styledComponents/styledLink/StyledLink';
 import useDataCollection from '../../hooks/useDataCollection';
 import { register } from '../../store/reducers/userReducer';
@@ -74,7 +74,7 @@ export default function RegisterScreen() {
         </StyledButton>
         <View style={styles.login}>
           <StyledText fontSize='small'>¿Ya eres miembro? </StyledText>
-          <StyledLink link={() => navigate(navRoutes.homeRoutes.login)}>
+          <StyledLink link={() => navigate(navigationRoutes.homeRoutes.login)}>
             Inicia sesión
           </StyledLink>
         </View>

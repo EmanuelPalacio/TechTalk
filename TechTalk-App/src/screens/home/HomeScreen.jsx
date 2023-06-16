@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from './homeStyle';
 import { StyledButton, StyledText } from '../../components/styledComponents';
-import navRoutes from '../../models/navigationRoutes';
+import { navigationRoutes } from '../../utils';
 import { HiRobot } from '../../components/svgComponents';
 
 function HomeScreen() {
@@ -25,13 +25,15 @@ function HomeScreen() {
         <HiRobot />
       </View>
       <View style={styles.navigation}>
-        <StyledButton onPress={() => navigate(navRoutes.homeRoutes.login)}>
+        <StyledButton
+          onPress={() => navigate(navigationRoutes.homeRoutes.login)}
+        >
           Iniciar Sesión
         </StyledButton>
         <StyledButton
           second
           reversedBorder
-          onPress={() => navigate(navRoutes.homeRoutes.register)}
+          onPress={() => navigate(navigationRoutes.homeRoutes.register)}
         >
           Regístrate
         </StyledButton>

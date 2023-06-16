@@ -3,12 +3,12 @@ import { useNavigation } from '@react-navigation/native';
 import { RobotEducation } from '../../components/svgComponents';
 import { StyledText } from '../../components/styledComponents';
 import styles from './styleLearning';
-import navRoutes from '../../models/navigationRoutes';
+import { navigationRoutes } from '../../utils';
 
 export default function LearningScreen() {
   const { navigate } = useNavigation();
   const { reading, writing, speaking, listening, activities } =
-    navRoutes.learningRoutes;
+    navigationRoutes.learningRoutes;
   const navigation = (route, param) => {
     navigate(route, { learning: param });
   };

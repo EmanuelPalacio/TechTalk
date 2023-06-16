@@ -1,6 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import { useSelector } from 'react-redux';
-import navRoutes from '../models/navigationRoutes';
+import navRoutes from '../utils/navigationRoutes';
 import { HomeScreen, LoginScreen, RegisterScreen } from '../screens';
 import LoginAlert from '../components/modals/loginAlert/LoginAlert';
 

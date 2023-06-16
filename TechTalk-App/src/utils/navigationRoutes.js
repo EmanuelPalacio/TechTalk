@@ -1,4 +1,4 @@
-const navRoutes = Object.freeze({
+const navigationRoutes = Object.freeze({
   homeRoutes: Object.freeze({
     home: 'home',
     login: 'login',
@@ -19,4 +19,4 @@ const navRoutes = Object.freeze({
     listening: 'listening',
   }),
 });
-export default navRoutes;
+export default navigationRoutes;

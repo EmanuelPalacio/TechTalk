@@ -9,7 +9,7 @@ import {
   StyledLink,
 } from '../../components/styledComponents';
 import { Email, Key, Eye, HiRobot } from '../../components/svgComponents';
-import navRoutes from '../../models/navigationRoutes';
+import { navigationRoutes } from '../../utils';
 import useDataCollection from '../../hooks/useDataCollection';
 import { login } from '../../store/reducers/userReducer';
 
@@ -57,7 +57,9 @@ export default function LoginSCreen() {
         </StyledButton>
         <View style={styles.register}>
           <StyledText fontSize='small'>¿No eres miembro? </StyledText>
-          <StyledLink link={() => navigate(navRoutes.homeRoutes.register)}>
+          <StyledLink
+            link={() => navigate(navigationRoutes.homeRoutes.register)}
+          >
             Regístrate
           </StyledLink>
         </View>
